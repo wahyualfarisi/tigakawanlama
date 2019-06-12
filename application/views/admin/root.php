@@ -209,8 +209,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/slipgaji">Hitung Gaji</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/absensi">Informasi Gaji</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/hitunggaji">Hitung Gaji</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/informasigaji">Informasi Gaji</a></li>
               </ul>
             </div>
           </li>

@@ -12,6 +12,18 @@ class Administrator extends CI_Controller {
         $this->load->view('admin/root');
     }
 
-    function dashboard(){}
+    function dashboard(){
+        $this->load->view('admin/pages/v_dashboard');
+    }
+
+    function hitunggaji()
+    {
+        $this->load->view('admin/pages/v_hitunggaji');
+    }
+
+    function informasigaji()
+    {
+        $this->load->view('admin/pages/v_informasigaji');
+    }
 
 }
