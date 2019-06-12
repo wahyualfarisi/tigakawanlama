@@ -28,6 +28,11 @@ class M_core extends CI_Model {
             return $this->db->get();
     }
 
+    function get_where($table, $where)
+    {
+        return $this->db->get_where($table, $where);
+    }
+
 
 
 

@@ -29,18 +29,27 @@
                 <img src="<?= base_url('assets/img/logo.jpeg') ?>">
               </div>
               <h4>Hello! let's get started</h4>
-              <form class="pt-3">
+              <form class="pt-3" id="form-login">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email Karyawan">
+                  <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password">
+                </div>
+
+                <div class="form-group">
+                  <select name="akses" id="akses" class="form-control form-control-lg">
+                      <option value=""> Pilih Akses </option>
+                      <option value="karyawan">Karyawan</option>
+                      <option value="administrator">Administrator</option>
+                      <option value="owner">Owner</option>
+                  </select>
                 </div>
 
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
+                      <input type="checkbox" class="form-check-input" id="show-password">
                       Tampilkan password
                     </label>
                   </div>
@@ -48,7 +57,7 @@
                 </div>
 
                 <div class="mt-3">
-                  <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
+                  <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                 </div>
                 
               
@@ -66,12 +75,16 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="<?= base_url('assets/vendors/js/vendor.bundle.base.js') ?> "></script>
-  <script src="<?= base_url('assets/vendors/js/vendor.bundle.addons.js') ?> "></script>
+  <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
+  <script src="<?= base_url('assets/js/jquery.validate.min.js') ?>"></script>
   <!-- endinject -->
   <!-- inject:js -->
   <script src="<?= base_url('assets/js/off-canvas.js') ?> "></script>
   <script src="<?= base_url('assets/js/misc.js')  ?>"></script>
+  <script>
+    var BASE_URL = '<?= base_url() ?>';
+  </script>
+  <script src="<?= base_url('public/auth/login.js') ?>" ></script>
   <!-- endinject -->
 </body>
 

@@ -1,0 +1,69 @@
+console.log('login is running');
+
+
+$('#form-login').validate(
+    {
+        rules:
+        {
+            email: 
+            {
+                required: true,
+                email: true
+            },
+            password:
+            {
+                required: true,
+            },
+            akses:
+            {
+                required: true
+            }
+        },
+        messages: 
+        {
+            email:
+            {
+                required: 'Email Tidak Boleh Kosong',
+                email: 'Email tidak valid'
+            },
+            password:
+            {
+                required: 'Password tidak boleh kosong'
+            },
+            akses:
+            {
+                required: 'Silahkan Pilih Akses'
+            }
+        },
+        errorPlacement: function(error, element){
+            error.css('color','red');
+            error.insertAfter(element);
+        },
+        submitHandler: function(form){
+            $.ajax({
+                url: `${BASE_URL}App/loginprocess`,
+                method: 'post',
+                data: new FormData(form),
+                processData: false,
+                contentType: false,
+                async: false,
+                cache: false,
+                success: function(data){
+                    console.log(data);
+                }
+            })
+        }
+    }
+)
+
+$(document).ready(function() {
+    $('#show-password').on('click', function() {
+        if($(this).is(':checked') ){
+            $('#password').attr('type','text');
+        }else{
+            $('#password').attr('type','password');
+        }
+    })
+ 
+   
+})
