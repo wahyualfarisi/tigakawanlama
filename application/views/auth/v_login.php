@@ -41,21 +41,17 @@
                   <div class="form-check">
                     <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
-                      Keep me signed in
+                      Tampilkan password
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  
                 </div>
 
                 <div class="mt-3">
                   <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
                 </div>
                 
-                <div class="mb-4" style="margin-top: 30px;">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                    <i class="mdi mdi mdi-account-key"></i> Login admin
-                  </button>
-                </div>
+              
                 <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="register.html" class="text-primary">Create</a>
                 </div>

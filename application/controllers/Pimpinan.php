@@ -10,7 +10,7 @@ class Pimpinan extends CI_Controller {
 
    function index()
    {
-       $this->load->view('auth/v_login');
+       $this->load->view('pimpinan/root');
    }
 
 }
