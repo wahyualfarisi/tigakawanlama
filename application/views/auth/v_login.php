@@ -41,7 +41,7 @@
                   <select name="akses" id="akses" class="form-control form-control-lg">
                       <option value=""> Pilih Akses </option>
                       <option value="karyawan">Karyawan</option>
-                      <option value="administrator">Administrator</option>
+                      <option value="admin">Administrator</option>
                       <option value="owner">Owner</option>
                   </select>
                 </div>
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="mt-3">
-                  <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" id="btn-login">SIGN IN</button>
                 </div>
                 
               
@@ -81,10 +81,11 @@
   <!-- inject:js -->
   <script src="<?= base_url('assets/js/off-canvas.js') ?> "></script>
   <script src="<?= base_url('assets/js/misc.js')  ?>"></script>
+  <script src="<?= base_url('assets/js/notify.min.js') ?>" ></script>
   <script>
     var BASE_URL = '<?= base_url() ?>';
   </script>
-  <script src="<?= base_url('public/auth/login.js') ?>" ></script>
+  <script src="<?= base_url('public/auth/login.min.js') ?>" ></script>
   <!-- endinject -->
 </body>
 

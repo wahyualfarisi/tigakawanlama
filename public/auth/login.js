@@ -48,8 +48,21 @@ $('#form-login').validate(
                 contentType: false,
                 async: false,
                 cache: false,
+                beforeSend(){
+                    $('#btn-login').text('process ...')
+                },
                 success: function(data){
-                    console.log(data);
+                    var parse = JSON.parse(data);
+                    if(parse.code === 200){
+                        $.notify(parse.msg, 'success');
+                        setTimeout(function() {
+                            location.href = `${BASE_URL}${parse.toLocation}/`
+                        }, 3000)
+                        
+                    }else{
+                        $.notify(parse.msg, 'danger');
+                        $('#btn-login').text('SIGN IN')
+                    }
                 }
             })
         }
@@ -57,6 +70,7 @@ $('#form-login').validate(
 )
 
 $(document).ready(function() {
+   
     $('#show-password').on('click', function() {
         if($(this).is(':checked') ){
             $('#password').attr('type','text');

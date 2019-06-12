@@ -250,7 +250,7 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.base.js') ?> "></script>
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.addons.js') ?> "></script>
   <!-- endinject -->
