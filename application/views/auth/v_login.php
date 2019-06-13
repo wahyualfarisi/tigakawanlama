@@ -85,7 +85,7 @@
   <script>
     var BASE_URL = '<?= base_url() ?>';
   </script>
-  <script src="<?= base_url('public/auth/login.min.js') ?>" ></script>
+  <script src="<?= base_url('dist/auth/login.js') ?>" ></script>
   <!-- endinject -->
 </body>
 

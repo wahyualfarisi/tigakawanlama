@@ -41,14 +41,14 @@ $('#form-login').validate(
         },
         submitHandler: function(form){
             $.ajax({
-                url: `${BASE_URL}App/loginprocess`,
+                url: BASE_URL+'App/loginprocess',
                 method: 'post',
                 data: new FormData(form),
                 processData: false,
                 contentType: false,
                 async: false,
                 cache: false,
-                beforeSend(){
+                beforeSend: function(){
                     $('#btn-login').text('process ...')
                 },
                 success: function(data){
@@ -56,7 +56,7 @@ $('#form-login').validate(
                     if(parse.code === 200){
                         $.notify(parse.msg, 'success');
                         setTimeout(function() {
-                            location.href = `${BASE_URL}${parse.toLocation}/`
+                            location.href = BASE_URL+parse.toLocation
                         }, 3000)
                         
                     }else{
