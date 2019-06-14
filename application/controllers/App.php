@@ -9,6 +9,7 @@ class App extends CI_Controller {
         $this->tableadmin = 't_administrator';
         $this->tablekaryawan = 't_karyawan';
         $this->load->model('m_core');
+        date_default_timezone_set("Asia/Bangkok");
     }
 
 
@@ -41,7 +42,8 @@ class App extends CI_Controller {
                         {
                             $data_session = array(
                                 'nik'   => $user->nik,
-                                'email' => $user->email
+                                'email' => $user->email,
+                                'akses' => $akses
                             );
                             $this->session->set_userdata($data_session);
                         } 
@@ -62,7 +64,8 @@ class App extends CI_Controller {
                             $data_session = array(
                                 'kode_admin'   => $admin->kode_admin,
                                 'email'        => $admin->email,
-                                'nama_lengkap' => $admin->nama_depan.' '.$admin->nama_belakang
+                                'nama_lengkap' => $admin->nama_depan.' '.$admin->nama_belakang,
+                                'akses' => $akses
                             );
                             $this->session->set_userdata($data_session);
                         }
@@ -83,7 +86,8 @@ class App extends CI_Controller {
                             $data_session = array(
                                 'kode_admin'   => $owner->kode_admin,
                                 'email'        => $owner->email,
-                                'nama_lengkap' => $owner->nama_depan.' '.$owner->nama_belakang
+                                'nama_lengkap' => $owner->nama_depan.' '.$owner->nama_belakang,
+                                'akses' => $akses
                             );
                             $session = $this->session->set_userdata($data_session);
                         }
@@ -100,7 +104,40 @@ class App extends CI_Controller {
                echo json_encode(array('msg' => 'server error', 'code' => 500));
                break;
        }
+   }
 
+   function logout()
+   {
+      $email       = $this->session->userdata('email');
+      $akses       = $this->session->userdata('akses');
+      $data = array(
+        'login_terakhir' =>  date('Y-m-d H:i:s')
+      );
+      $where = array(
+        'email' => $email
+      );
+
+      if($akses == 'karyawan'){
+        $updatelogin = $this->m_core->update_where($this->tablekaryawan, $data, $where );
+        if($updatelogin){
+           redirect(base_url());
+        }else{
+           redirect(base_url());
+        }
+      }else if($akses == 'admin' || $akses == 'owner' ){
+          $updatelogin = $this->m_core->update_where($this->tableadmin, $data, $where);
+          if($updatelogin){
+              redirect(base_url());
+          }else{
+              redirect(base_url());
+          }
+      }
+
+    
+      
+
+
+      
     
    }
 

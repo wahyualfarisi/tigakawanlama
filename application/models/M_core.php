@@ -33,6 +33,14 @@ class M_core extends CI_Model {
         return $this->db->get_where($table, $where);
     }
 
+    function update_where($table, $data,  $where)
+    {
+      return  $this->db
+            ->where($where)
+            ->update($table, $data);
+       
+    }
+
 
 
 
