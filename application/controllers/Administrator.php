@@ -5,6 +5,9 @@ class Administrator extends CI_Controller {
 
     function __construct(){
         parent::__construct();
+        if($this->session->userdata('login') != 1){
+            redirect(base_url() );
+        }
     }
 
     function index()
@@ -24,6 +27,21 @@ class Administrator extends CI_Controller {
     function informasigaji()
     {
         $this->load->view('admin/pages/v_informasigaji');
+    }
+
+    function tambahkaryawan()
+    {
+        $this->load->view('admin/pages/v_infokaryawan');
+    }
+
+    function listkaryawan()
+    {
+        $this->load->view('admin/pages/v_list_karyawan');
+    }
+
+    function infoabsensi()
+    {
+        $this->load->view('admin/pages/v_infoabsensi');
     }
 
 }

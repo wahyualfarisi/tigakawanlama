@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?> ">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?> " />
+  <script>
+    var BASE_URL = '<?= base_url() ?>';
+  </script>
 </head>
 <body>
   <div class="container-scroller">
@@ -41,7 +44,7 @@
                 <span class="availability-status online"></span>             
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black"><?= $this->session->userdata('nama_lengkap') ?></p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -50,9 +53,9 @@
                 Activity Log
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="<?= base_url('App/logout') ?>">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
-                Signout
+                Logout
               </a>
             </div>
           </li>
@@ -223,8 +226,9 @@
             </a>
             <div class="collapse" id="ui-karyawan">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/slipgaji">Informasi Karyawan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/absensi">Informasi Absensi</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/tambahkaryawan">Tambah Karyawan</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/listkaryawan">List Karyawan</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/infoabsensi">Informasi Absensi</a></li>
               </ul>
             </div>
           </li>
@@ -238,8 +242,8 @@
        
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="" target="_blank">Tiga Kawan Lama .inc</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Tiga Kawan Lama<i class="mdi mdi-heart text-danger"></i></span>
           </div>
         </footer>
         <!-- partial -->
@@ -251,8 +255,11 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.base.js') ?> "></script>
+  <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
+  <script src="<?= base_url('assets/js/jquery.validate.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/notify.min.js') ?>" ></script>
+  
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.addons.js') ?> "></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->

@@ -19,7 +19,7 @@ class M_core extends CI_Model {
             return $this->db->get();
     }
 
-    function get_all_table()
+    function get_all_table($table, $fieldOrder, $methodOrder)
     {
         $this->db
              ->select('*')
@@ -39,6 +39,13 @@ class M_core extends CI_Model {
             ->where($where)
             ->update($table, $data);
        
+    }
+
+    function delete_rows($table, $where)
+    {
+        $this->db->where($where);
+        return $this->db->delete($table);
+        
     }
 
 

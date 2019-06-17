@@ -65,7 +65,8 @@ class App extends CI_Controller {
                                 'kode_admin'   => $admin->kode_admin,
                                 'email'        => $admin->email,
                                 'nama_lengkap' => $admin->nama_depan.' '.$admin->nama_belakang,
-                                'akses' => $akses
+                                'akses' => $akses,
+                                'login' => 1
                             );
                             $this->session->set_userdata($data_session);
                         }
@@ -120,6 +121,7 @@ class App extends CI_Controller {
       if($akses == 'karyawan'){
         $updatelogin = $this->m_core->update_where($this->tablekaryawan, $data, $where );
         if($updatelogin){
+           $this->session->sess_destroy();
            redirect(base_url());
         }else{
            redirect(base_url());
@@ -127,11 +129,18 @@ class App extends CI_Controller {
       }else if($akses == 'admin' || $akses == 'owner' ){
           $updatelogin = $this->m_core->update_where($this->tableadmin, $data, $where);
           if($updatelogin){
+              $this->session->sess_destroy();
               redirect(base_url());
           }else{
+              $this->session->sess_destroy();
               redirect(base_url());
           }
+      }else{
+          $this->session->sess_destroy();
+          redirect(base_url());
       }
+
+     
 
     
       

@@ -49,18 +49,17 @@ $('#form-login').validate(
                 async: false,
                 cache: false,
                 beforeSend: function(){
-                    $('#btn-login').text('process ...')
+                    $('#btn-login').css('display','none');
                 },
                 success: function(data){
                     var parse = JSON.parse(data);
                     if(parse.code === 200){
+                        $('#myProgress').css('display','block');
                         $.notify(parse.msg, 'success');
-                        setTimeout(function() {
-                            location.href = BASE_URL+parse.toLocation
-                        }, 3000)
-                        
+                        move(parse.toLocation);                        
                     }else{
                         $.notify(parse.msg, 'danger');
+                        $('#btn-login').css('display','block');
                         $('#btn-login').text('SIGN IN')
                     }
                 }
@@ -69,8 +68,23 @@ $('#form-login').validate(
     }
 )
 
+function move(tolocation) {
+    var elem = document.getElementById("myBar");   
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+      } else {
+        width++; 
+        elem.style.width = width + '%'; 
+        location.href = BASE_URL+tolocation;
+      }
+    }
+  }
+
 $(document).ready(function() {
-   
+    $('#myProgress').css('display','none');
     $('#show-password').on('click', function() {
         if($(this).is(':checked') ){
             $('#password').attr('type','text');

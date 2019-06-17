@@ -16,6 +16,17 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?> ">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?> " />
+   <style>
+    #myProgress {
+    width: 100%;
+    background-color: #ddd;
+    }
+
+  #myBar {
+    width: 1%;
+    height: 30px;
+  }
+   </style>
 </head>
 
 <body>
@@ -58,6 +69,10 @@
 
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" id="btn-login">SIGN IN</button>
+                </div>
+
+                <div id="myProgress">
+                  <div id="myBar" class="btn-gradient-primary"></div>
                 </div>
                 
               
