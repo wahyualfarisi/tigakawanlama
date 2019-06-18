@@ -19,9 +19,9 @@ class Administrator extends CI_Controller {
         $this->load->view('admin/pages/v_dashboard');
     }
 
-    function hitunggaji()
+    function penggajian()
     {
-        $this->load->view('admin/pages/v_hitunggaji');
+        $this->load->view('admin/pages/v_penggajian');
     }
 
     function informasigaji()
@@ -44,4 +44,8 @@ class Administrator extends CI_Controller {
         $this->load->view('admin/pages/v_infoabsensi');
     }
 
+    function importabsensi($tgl_penggajian)
+    {
+        $this->load->view('admin/pages/v_import_absensi');
+    }
 }

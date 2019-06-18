@@ -1,4 +1,4 @@
-<div class="container">
+
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-account-outline"></i>                 
@@ -11,9 +11,9 @@
             
         </div>
     </form>
-</div>
 
-<div class="container">
+
+
     <div class="row" style="margin-top: 30px;" id="show-karyawan">
             <!-- <div class="col-md-4 stretch-card grid-margin">
                 <div class="card bg-gradient-info  card-img-holder text-white">
@@ -58,7 +58,6 @@
             </div> -->
 
     </div>
-</div>
 <script src="<?= base_url('dist/admin/karyawan/karyawan.min.js') ?>" ></script>
 <!-- <script src="<?= base_url('public/admin/karyawan/list_karyawan.js') ?>" ></script> -->
 

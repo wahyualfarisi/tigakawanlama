@@ -3,6 +3,7 @@ var ListKaryawanDOM = {
     labelShowKaryawan: '#show-karyawan',
     formSearch: '#form_search_karyawan',
     fieldSearch: '#search_karyawan',
+    modalKaryawan: '#modalKaryawan'
 }
 
 var listKaryawanUI = (function() {
@@ -51,7 +52,7 @@ var listKaryawanController = (function(UIList) {
             }else{
                 loadListKaryawan();
             }
-        })
+        });
 
 
     }

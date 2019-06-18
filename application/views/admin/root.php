@@ -7,11 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Administrator page</title>
   <!-- plugins:css -->
+  
   <link rel="stylesheet" href="<?= base_url('assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') ?> ">
+  
   <link rel="stylesheet" href="<?= base_url('assets/vendors/css/vendor.bundle.base.css') ?> ">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
   <!-- endinject -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?> ">
+  
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?> " />
   <script>
@@ -206,13 +210,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Gaji</span>
+              <span class="menu-title">Penggajian</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/hitunggaji">Hitung Gaji</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/penggajian">Hitung Gaji</a></li>
                 <li class="nav-item"> <a class="nav-link" href="#/informasigaji">Informasi Gaji</a></li>
               </ul>
             </div>
@@ -254,9 +258,47 @@
   </div>
   <!-- container-scroller -->
 
+<div class="modal fade"  id="modalKaryawan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalKaryawan">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div >
+          <form id="form-search-on-modal">
+            <input type="text" id="search_karyawan" class="form-control" placeholder="Cari Karyawan" >
+          </form>
+        </div>
+        <table class="table table-striped">
+          <thead>
+             <tr>
+                <th></th>
+                <th>NIK</th>
+                <th>Nama Karyawan</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody id="show-karyawan" ></tbody>
+           
+        </table>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-primary" id="btn-pilih">Pilih</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <!-- plugins:js -->
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.base.js') ?> "></script>
   <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="<?= base_url('assets/js/jquery.validate.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/notify.min.js') ?>" ></script>
   
