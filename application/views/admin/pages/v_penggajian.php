@@ -1,10 +1,10 @@
-<h3 class="page-title">
+<h3 class="page-title animated fadeIn">
         <span class="page-title-icon bg-gradient-primary text-white mr-2">
         <i class="mdi mdi-account-outline"></i>                 
         </span>
        Penggajian
  </h3>
-<div class="col-12 grid-margin" style="margin-top: 15px;">
+<div class="col-12 grid-margin animated fadeIn" style="margin-top: 15px;">
     <div class="card">
         <div class="card-body">
              <h4 class="card-title">Penggajian</h4>
@@ -71,7 +71,7 @@
 </div>
 
 
-<div class="col-12">
+<div class="col-12 animated fadeIn">
     <div class="row"  style="margin-top: 30px;" id="show-data-gaji">
          <!-- <div class="col-md-4 stretch-card grid-margin">
                 <div class="card bg-gradient-info  card-img-holder text-white">

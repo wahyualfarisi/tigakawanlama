@@ -28,7 +28,7 @@ var createdAbsensiUI = (function() {
                     if(item.status === 'success'){
                         labelAbsensi = '<button type="button" class="btn btn-gradient-success btn-fw"> Lihat Absensi </button>';
                     }else{
-                        labelAbsensi = '<button class="btn btn-gradient-primary btn-fw"> Upload Absensi </button>';
+                        labelAbsensi = '<a href="#/uploadabsensi?nik='+item.nik+'&&tgl_penggajian='+SEGMENT+'&&id_absensi='+item.id_absensi+' " class="btn btn-gradient-primary btn-fw"> Upload Absensi </a>';
                     }
                     html += '<tr>';
                         html += '<td>'+no+++' </td>';
@@ -84,6 +84,8 @@ var createdAbsensiUI = (function() {
                       html += '<td><button class="btn btn-gradient-primary btn-pilih-karyawan" data-nik="'+item.nik+'" > Pilih </button></td>';
                     html += '</tr>';
                 });
+            }else{
+                html += 'Tidak ad data';
             }
             $(createdAbsensiDOM.labelShowOnModalKaryawan).html(html);
         }
@@ -97,6 +99,7 @@ var createdAbsnsiController = (function(CreatedUI) {
 
         $(createdAbsensiDOM.btnPilihKaryawan).on('click', function() {
             load_karyawan(query = '', function(data) {
+                
                 CreatedUI.getDataOnModal(data);
             })
             $(createdAbsensiDOM.modalKaryawan).modal('show');
@@ -112,6 +115,7 @@ var createdAbsnsiController = (function(CreatedUI) {
         $(createdAbsensiDOM.formSearchKaryawan).on('keyup', '#search_karyawan', function() {
             if($(this).val() !== ""){
                 load_karyawan($(this).val(), function(data) {
+                    
                     CreatedUI.getDataOnModal(data);
                 })
             }else{
@@ -165,6 +169,7 @@ var createdAbsnsiController = (function(CreatedUI) {
                             if(parse.code === 200){
                                 $.notify(parse.msg, 'success');
                                 load_absensi_created();
+                                $(createdAbsensiDOM.nik_karyawan).val("")
                             }else{
                                 $.notify(parse.msg, 'error');
                             }  
@@ -176,17 +181,22 @@ var createdAbsnsiController = (function(CreatedUI) {
 
         $(createdAbsensiDOM.modalKaryawan).on('click','#btn-pilih', function() {
             alert('cliked');
-        })
+        });
+
+        $(createdAbsensiDOM.modalKaryawan).on('click', '#checkall', function() {
+            $('input:checkbox').not(this).prop('checked', this.checked)
+        });
 
     }
 
     var load_karyawan = function(query, callback){
         return $.ajax({
-            url: BASE_URL+'master/karyawan/Karyawan/fetch_all',
+            url: BASE_URL+'master/absensi/Absensi/show_current_karyawan/'+SEGMENT,
             method: 'post',
             data: {query: query},
             dataType: 'json',
             success: function(data){
+                console.log(data);
                 callback(data);
             }
         })

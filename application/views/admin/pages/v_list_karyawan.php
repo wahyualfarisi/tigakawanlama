@@ -14,7 +14,7 @@
 
 
 
-    <div class="row" style="margin-top: 30px;" id="show-karyawan">
+    <div class="row animated fadeIn" style="margin-top: 30px;" id="show-karyawan">
             <!-- <div class="col-md-4 stretch-card grid-margin">
                 <div class="card bg-gradient-info  card-img-holder text-white">
                 <div class="card-body">                             

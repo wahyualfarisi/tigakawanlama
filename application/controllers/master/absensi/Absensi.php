@@ -9,6 +9,8 @@ class Absensi extends CI_Controller {
         $this->primary = 'id_absensi';
         $this->load->model('m_core');
         $this->load->model('m_absensi');
+        $this->load->library('excel');
+        $this->load->helper('selisih');
     }
 
 
@@ -70,4 +72,85 @@ class Absensi extends CI_Controller {
     
     }
 
+    function show_current_karyawan($tgl_penggajian)
+    {
+        $where = array(
+            'tgl_penggajian' => $tgl_penggajian
+        );
+        $absensi  = $this->m_core->get_where($this->table, $where);
+        if($absensi->num_rows() > 0) 
+        {
+            foreach($absensi->result() as $rowabsensi)
+            {
+                $dataabsensi[] = $rowabsensi->nik; 
+            }
+            $getData = $this->m_absensi->fetch_current_karyawan($dataabsensi);
+            echo json_encode($getData->result());
+        }else{
+            $getData = $this->m_core->get_all_table('t_karyawan','nik','asc');
+            echo json_encode($getData->result());
+        }      
+    }
+
+    function upload_absensi()
+    {
+        if(isset($_FILES['file']['name']) ){
+            $path   = $_FILES['file']['tmp_name'];
+            $object = PHPExcel_IOFactory::load($path);
+
+
+            foreach($object->getWorksheetIterator() as $worksheet)
+            {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();
+
+
+                    for($row = 2; $row <= $highestRow; $row++ )
+                    {
+                        $nik        = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                        $tgl_absen  = $worksheet->getCellByColumnAndRow(1, $row)->getFormattedValue();
+                        $jam_masuk  = $worksheet->getCellByColumnAndRow(2, $row)->getFormattedValue();
+                        $jam_keluar = $worksheet->getCellByColumnAndRow(3, $row)->getFormattedValue();
+                        $scan_masuk = $worksheet->getCellByColumnAndRow(4, $row)->getFormattedValue();
+                        $scan_keluar = $worksheet->getCellByColumnAndRow(5, $row)->getFormattedValue();
+                       
+                        $terlambat       = selisih($jam_masuk, $scan_masuk);
+                        $total_jam_kerja = selisih($scan_keluar, $scan_masuk);
+
+                       
+
+
+                        $data[] = array(
+                            'nik'         => $nik,
+                            'id_absensi'  => $this->input->post('id_absensi'),
+                            'tgl_absen'   => $tgl_absen,
+                            'jam_masuk'   => $jam_masuk,
+                            'jam_keluar'  => $jam_keluar,
+                            'scan_masuk'  => $scan_masuk,
+                            'scan_keluar' => $scan_keluar,
+                            'terlambat'   => $terlambat,
+                            'total_jam_kerja' => $total_jam_kerja
+                        );
+
+
+
+                    }
+
+                   
+
+                    
+
+            }
+            echo json_encode($data);
+            // print_r($data);
+        }
+    }
+
+
+    function testing()
+    {
+        echo  insertselisih("08:00", "17:00");
+    }
+
+   
 }

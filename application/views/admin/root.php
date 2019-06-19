@@ -9,7 +9,7 @@
   <!-- plugins:css -->
   
   <link rel="stylesheet" href="<?= base_url('assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') ?> ">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css" />
   <link rel="stylesheet" href="<?= base_url('assets/vendors/css/vendor.bundle.base.css') ?> ">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
   <!-- endinject -->
@@ -268,10 +268,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <div >
-          <form id="form-search-on-modal">
-            <input type="text" id="search_karyawan" class="form-control" placeholder="Cari Karyawan" >
-          </form>
+        <div style="margin-top: 20px; margin-bottom: 20px;" >
+          <button id="checkall" class="btn btn-primary">Pilih Semua</button>
         </div>
         <table class="table table-striped">
           <thead>

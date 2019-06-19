@@ -1,4 +1,4 @@
-<div class="col-12 grid-margin">
+<div class="col-12 grid-margin animated fadeIn">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Tambah Karyawan</h4>
