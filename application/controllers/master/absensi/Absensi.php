@@ -114,11 +114,14 @@ class Absensi extends CI_Controller {
                         $scan_masuk = $worksheet->getCellByColumnAndRow(4, $row)->getFormattedValue();
                         $scan_keluar = $worksheet->getCellByColumnAndRow(5, $row)->getFormattedValue();
                        
-                        $terlambat       = selisih($jam_masuk, $scan_masuk);
+                        $check_telat       = terlambat($jam_masuk, $scan_masuk);
+                        if($check_telat < 0){
+                            $terlambat     = selisih($jam_masuk, $scan_masuk);
+                        }else{
+                            $terlambat     = '-';
+                        }
+
                         $total_jam_kerja = selisih($scan_keluar, $scan_masuk);
-
-                       
-
 
                         $data[] = array(
                             'nik'         => $nik,
@@ -131,25 +134,23 @@ class Absensi extends CI_Controller {
                             'terlambat'   => $terlambat,
                             'total_jam_kerja' => $total_jam_kerja
                         );
-
-
-
                     }
-
-                   
-
-                    
-
             }
             echo json_encode($data);
-            // print_r($data);
         }
     }
 
 
     function testing()
     {
-        echo  insertselisih("08:00", "17:00");
+        $terlambat =  terlambat("08:00", "09:10");
+        if($terlambat < 0){
+            echo "kamu terlambat ".selisih("08:00","09:10");
+        }else{
+            echo "kamu tidak terlambat";
+        }
+
+        
     }
 
    
