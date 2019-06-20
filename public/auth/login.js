@@ -81,7 +81,7 @@ function move(tolocation) {
         location.href = BASE_URL+tolocation;
       }
     }
-  }
+}
 
 $(document).ready(function() {
     $('#myProgress').css('display','none');

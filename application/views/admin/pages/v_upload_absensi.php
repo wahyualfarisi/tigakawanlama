@@ -7,36 +7,70 @@
 <div class="col-lg-12 grid-margin stretch-card animated fadeIn" style="margin-top:20px;">
     <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Import Absensi</h4>
+     <h4 class="card-title">Data Karyawan</h4>
+        <div style="margin-top:20px; margin-bottom: 20px;">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nik</th>
+                        <th>Nama Lengkap</th>
+                        <th>Jabatan</th>
+                        <th>Tanggal Penggajian</th>
+                    </tr>
+                    <tbody id="show-current-karyawan" ></tbody>
+                </thead>
+            </table>
+        </div>
 
-        <p class="card-description">
-            <form id="form-upload-absensi" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label>Pilih File absensi</label>
-                    <input type="hidden" name="id_absensi" value="<?=$_GET['id_absensi'] ?>">
-                    <input type="file" class="form-control" name="file" accept=".xls, .xlsx">
-                </div>
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </form>
-        </p>
+        <div id="section-upload">
+            <h4 class="card-title" style="margin-top: 80px;">Import Absensi</h4>
+            <p class="card-description">
+                <form id="form-upload-absensi" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Pilih File absensi</label>
+                        <input type="hidden" name="id_absensi" value="<?=$_GET['id_absensi'] ?>">
+                        <input type="file" class="form-control" name="file" accept=".xls, .xlsx">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </p>
+        </div>
 
-        <h2 class="text-center">Preview Absensi</h2>
-        <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Tanggal Absen</th>
-                <th>Jam Masuk</th>
-                <th>Jam Keluar</th>
-                <th>Scan Masuk</th>
-                <th>Scan Keluar</th>
-                <th>Terlambat</th>
-                <th>Total Jam Kerja</th>
-            </tr>
-        </thead>
-        <tbody id="preview-absensi-karyawan"></tbody>
+       
+       
+
+        <h4 class="card-title" style="margin-top: 80px;">Preview Absensi</h4>
+        <form id="form-save-karyawan">
+            <table class="table table-bordered">
+                <input type="hidden" name="tgl_penggajian" value="<?= $_GET['tgl_penggajian'] ?>" >
+                <input type="hidden" name="id_absensi" value="<?= $_GET['id_absensi'] ?>" >
+                <input type="hidden" name="nik" value="<?= $_GET['nik'] ?>" >
+                <thead>
+                    <tr>
+                        <th>Tanggal Absen</th>
+                        <th>Jam Masuk</th>
+                        <th>Jam Keluar</th>
+                        <th>Scan Masuk</th>
+                        <th>Scan Keluar</th>
+                        <th>Terlambat</th>
+                        <th>Total Jam Kerja</th>
+                    </tr>
+                </thead>
+                <tbody id="preview-absensi-karyawan"></tbody>
+            </table>
+
+            <div id="section-form-simpan-absensi">
+                <button type="submit" class="btn btn-primary" id="btn-save-absensi">SIMPAN</button>
+            </div>
+        </form>
+       
 
     </div>
     </div>
 </div>
 
+<script>
+    var GLOBAL_NIK = '<?= $_GET['nik'] ?>';
+    var GLOBAL_TGL_PENGGAJIAN = '<?= $_GET['tgl_penggajian'] ?>';
+</script>
 <script src="<?= base_url('public/admin/absensi/uploadabsensi.js') ?>" ></script>

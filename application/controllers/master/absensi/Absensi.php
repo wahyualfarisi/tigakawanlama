@@ -9,6 +9,7 @@ class Absensi extends CI_Controller {
         $this->primary = 'id_absensi';
         $this->load->model('m_core');
         $this->load->model('m_absensi');
+        $this->load->model('m_karyawan');
         $this->load->library('excel');
         $this->load->helper('selisih');
     }
@@ -140,6 +141,20 @@ class Absensi extends CI_Controller {
         }
     }
 
+    function show_karyawan_nik($nik)
+    {
+        $data = $this->m_karyawan->fetch_karyawan($nik)->result();
+        echo json_encode($data);        
+    }
+
+    function simpanabsensi()
+    {
+        $tgl_absen = $this->input->post('tgl_absen');
+        $nik       = $this->input->post('nik');
+        // echo count($tgl_absen);
+        echo $nik;
+    }
+
 
     function testing()
     {
@@ -149,8 +164,6 @@ class Absensi extends CI_Controller {
         }else{
             echo "kamu tidak terlambat";
         }
-
-        
     }
 
    

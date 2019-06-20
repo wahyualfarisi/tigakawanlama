@@ -16,5 +16,11 @@ class M_karyawan extends CI_Model{
         return $this->db->get();
     }
 
+    function fetch_karyawan($nik)
+    {
+        $query = $this->db->query("SELECT * FROM t_karyawan , t_gaji WHERE t_karyawan.kode_jabatan = t_gaji.kode_jabatan AND t_karyawan.nik = '$nik' ");
+        return $query;
+    }
+
 
 }
