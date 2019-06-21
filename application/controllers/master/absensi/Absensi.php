@@ -35,7 +35,7 @@ class Absensi extends CI_Controller {
         'status'         => 'success'
        );
        $countAbsensi  = $this->m_core->get_where($this->table, $where_absensi)->num_rows();
-       $countKaryawan = $this->m_core->get_all_table('t_karyawan','nik','asc')->num_rows();
+       $countKaryawan = $this->m_karyawan->get_karyawan_not_admin('t_karyawan','nik','asc')->num_rows();
        echo json_encode(array(
         'total_absensi'  => $countAbsensi,
         'total_karyawan' => $countKaryawan
@@ -85,10 +85,10 @@ class Absensi extends CI_Controller {
             {
                 $dataabsensi[] = $rowabsensi->nik; 
             }
-            $getData = $this->m_absensi->fetch_current_karyawan($dataabsensi);
+            $getData = $this->m_absensi->fetch_current_karyawan_not_admin($dataabsensi);
             echo json_encode($getData->result());
         }else{
-            $getData = $this->m_core->get_all_table('t_karyawan','nik','asc');
+            $getData = $this->m_karyawan->get_karyawan_not_admin();
             echo json_encode($getData->result());
         }      
     }
@@ -118,8 +118,10 @@ class Absensi extends CI_Controller {
                         $check_telat       = terlambat($jam_masuk, $scan_masuk);
                         if($check_telat < 0){
                             $terlambat     = selisih($jam_masuk, $scan_masuk);
+                            $perJam        = getJam($jam_masuk, $scan_masuk);
                         }else{
                             $terlambat     = '-';
+                            $perJam        = 0;
                         }
 
                         $total_jam_kerja = selisih($scan_keluar, $scan_masuk);
@@ -133,6 +135,7 @@ class Absensi extends CI_Controller {
                             'scan_masuk'  => $scan_masuk,
                             'scan_keluar' => $scan_keluar,
                             'terlambat'   => $terlambat,
+                            'telat_perjam' => $perJam,
                             'total_jam_kerja' => $total_jam_kerja
                         );
                     }
@@ -149,10 +152,79 @@ class Absensi extends CI_Controller {
 
     function simpanabsensi()
     {
-        $tgl_absen = $this->input->post('tgl_absen');
-        $nik       = $this->input->post('nik');
-        // echo count($tgl_absen);
-        echo $nik;
+        //single value
+        $nik        = $this->input->post('nik');
+        $id_absensi = $this->input->post('id_absensi');
+        $potongan   = $this->input->post('potongan');
+        $total_gaji = $this->input->post('total_gaji');
+
+
+        //array value
+        $tgl_absen  = $this->input->post('tgl_absen');
+        $jam_masuk  = $this->input->post('jam_masuk');
+        $jam_keluar = $this->input->post('jam_keluar');
+        $scan_masuk = $this->input->post('scan_masuk');
+        $scan_keluar = $this->input->post('scan_keluar');
+        
+        //insert gaji karyawan
+        $data_gaji_karyawan = array(
+            'id_penggajian' => rand(0, 23536),
+            'id_absensi' => $id_absensi,
+            'total_gaji' => $total_gaji,
+            'potongan'   => $potongan
+        );
+
+        $this->m_core->add_data('t_gaji_karyawan', $data_gaji_karyawan);
+
+        for($i=0; $i<count($tgl_absen); $i++)
+        {
+            $data[] = array(
+                'id_absensi' => $id_absensi,
+                'tgl_absen' => $tgl_absen[$i],
+                'jam_masuk' => $jam_masuk[$i],
+                'jam_keluar' => $jam_keluar[$i],
+                'scan_masuk' => $scan_masuk[$i],
+                'scan_keluar' => $scan_keluar[$i]
+            );
+        }
+        $where = array(
+            'id_absensi' => $id_absensi
+        );
+
+        $data_update = array(
+            'status' => 'success'
+        );
+        $this->m_core->update_where($this->table,$data_update,$where);
+        $insert = $this->db->insert_batch('t_detail_absensi', $data);
+        
+        if($insert){
+                $res = array('msg' => 'absensi berhasil di simpan', 'code' => 200);
+                echo json_encode($res);             
+        }else{
+            $res = array('msg' => 'Gagal menyimpan absensi', 'code' => 400);
+            echo json_encode($res);
+        }
+    }
+
+    function waiting_approved()
+    {
+        $status = $this->input->post('status');
+        $tgl_penggajian = $this->input->post('tgl');
+        $where = array(
+            'tgl_penggajian' => $tgl_penggajian
+        );
+        $data  = array(
+            'status_penggajian' => $status
+        );
+        $update = $this->m_core->update_where('t_penggajian', $data, $where);
+        if($update){
+            $res = array('msg' => 'berhasil dikirim ke owner', 'code' => 200);
+            echo json_encode($res);
+        }else{
+            $res = array('msg' => 'Gagal mengirim absensi', 'code' => 400);
+            echo json_encode($res);
+        }
+        
     }
 
 

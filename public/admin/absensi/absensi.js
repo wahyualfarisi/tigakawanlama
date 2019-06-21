@@ -13,7 +13,11 @@ var createdAbsensiDOM = {
     labelShowOnModalKaryawan: '#show-karyawan',
     nik_karyawan: '#nik_karyawan',
     formSearchKaryawan: '#form-search-on-modal',
-    formAddPenggajian: '#form-add-penggajian'
+    formAddPenggajian: '#form-add-penggajian',
+    sectionACC: '#sectionACC',
+    btnSendingOwner: '#btn-send-to-owner',
+    modalNotif: '#modalNotif',
+    contentModal: '#content-modal'
 }
 
 
@@ -26,7 +30,7 @@ var createdAbsensiUI = (function() {
             if(obj.length > 0 ){
                 obj.forEach(function(item) {
                     if(item.status === 'success'){
-                        labelAbsensi = '<button type="button" class="btn btn-gradient-success btn-fw"> Lihat Absensi </button>';
+                        labelAbsensi = '<a href="#/absensi/'+item.id_absensi+' " class="btn btn-gradient-success btn-fw"> Lihat Absensi </a>';
                     }else{
                         labelAbsensi = '<a href="#/uploadabsensi?nik='+item.nik+'&&tgl_penggajian='+SEGMENT+'&&id_absensi='+item.id_absensi+' " class="btn btn-gradient-primary btn-fw"> Upload Absensi </a>';
                     }
@@ -47,6 +51,9 @@ var createdAbsensiUI = (function() {
             $(createdAbsensiDOM.labelShowCreatedAbsensi).html(html);
         },
         getProgress: function(data){
+            if(data.total_absensi === data.total_karyawan) {
+                $(createdAbsensiDOM.sectionACC).css('display','block')
+            }
             var countprogress = 100 / data.total_karyawan ;
             var result = countprogress;
             var percentage = data.total_absensi * result.toFixed(1);
@@ -66,7 +73,7 @@ var createdAbsensiUI = (function() {
                             html += '<div class="card-body">';
                             html += '<h4 class="font-weight-normal mb-3">'+item.tgl_penggajian+'<i class="mdi mdi-bookmark mdi-24px float-right"></i></h4>';
                             html += '<h2 class="mb-2">'+item.status_penggajian+'</h2>';
-                            html += '<h5>Di input oleh '+item.nama_admin+' </h5>';
+                            html += '<h5>Di input oleh '+item.nama_admin+' </h5>';                            
                             html += '</div>';
                         html += '</div>';
                 })
@@ -81,6 +88,7 @@ var createdAbsensiUI = (function() {
                       html += '<td> <input type="checkbox" value="'+item.nik+'" /></td>';
                       html += '<td>'+item.nik+'</td>';
                       html += '<td>'+item.nama_depan+'</td>';
+                      html += '<td>'+item.nama_jabatan+'</td>';
                       html += '<td><button class="btn btn-gradient-primary btn-pilih-karyawan" data-nik="'+item.nik+'" > Pilih </button></td>';
                     html += '</tr>';
                 });
@@ -109,13 +117,11 @@ var createdAbsnsiController = (function(CreatedUI) {
             var nik = $(this).data('nik');
             $(createdAbsensiDOM.nik_karyawan).val(nik);
             $(createdAbsensiDOM.modalKaryawan).modal('hide');
-            // $.notify('berhasil menambahkan', 'success');
         });
 
         $(createdAbsensiDOM.formSearchKaryawan).on('keyup', '#search_karyawan', function() {
             if($(this).val() !== ""){
                 load_karyawan($(this).val(), function(data) {
-                    
                     CreatedUI.getDataOnModal(data);
                 })
             }else{
@@ -187,6 +193,38 @@ var createdAbsnsiController = (function(CreatedUI) {
             $('input:checkbox').not(this).prop('checked', this.checked)
         });
 
+        $(createdAbsensiDOM.btnSendingOwner).on('click', function() {
+            var html = '';
+            html += '<div>';
+                html += '<p> Data absensi untuk penggajian '+SEGMENT+' siap di kirim ke owner ? ';
+                html += '<div>';
+                    html += '<button class="btn btn-primary btn-kirim" > Lanjutkan </button>'
+                html += '</div>';
+            html += '</div>';
+            $(createdAbsensiDOM.contentModal).html(html);
+            $(createdAbsensiDOM.modalNotif).modal('show')
+        });
+
+        $(createdAbsensiDOM.modalNotif).on('click', '.btn-kirim', function() {
+           $.ajax({
+               url: BASE_URL+'master/absensi/Absensi/waiting_approved',
+               method: 'post',
+               data: {status: 'waiting', tgl: SEGMENT},
+               success: function(data){
+                    var parse = JSON.parse(data);
+                    if(parse.code === 200){
+                        $.notify(parse.msg, 'success');
+                        location.hash = '#/penggajian';
+                        $(createdAbsensiDOM.modalNotif).modal('hide')
+                    }else{
+                        $.notify(parse.msg, 'error');
+                    }
+                    console.log(data);
+               }
+           })
+        })
+
+
     }
 
     var load_karyawan = function(query, callback){
@@ -249,5 +287,6 @@ var createdAbsnsiController = (function(CreatedUI) {
 })(createdAbsensiUI);
 
 $(document).ready(function() {
+    $(createdAbsensiDOM.sectionACC).css('display','none')
     createdAbsnsiController.init();
 });

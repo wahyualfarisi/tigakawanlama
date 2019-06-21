@@ -14,6 +14,7 @@
                     <tr>
                         <th>Nik</th>
                         <th>Nama Lengkap</th>
+                        <th>Kode Jabatan</th>
                         <th>Jabatan</th>
                         <th>Tanggal Penggajian</th>
                     </tr>
@@ -40,6 +41,7 @@
        
 
         <h4 class="card-title" style="margin-top: 80px;">Preview Absensi</h4>
+        <div id="messages"></div>
         <form id="form-save-karyawan">
             <table class="table table-bordered">
                 <input type="hidden" name="tgl_penggajian" value="<?= $_GET['tgl_penggajian'] ?>" >
@@ -47,6 +49,7 @@
                 <input type="hidden" name="nik" value="<?= $_GET['nik'] ?>" >
                 <thead>
                     <tr>
+                        <th>NIK</th>
                         <th>Tanggal Absen</th>
                         <th>Jam Masuk</th>
                         <th>Jam Keluar</th>
@@ -59,7 +62,22 @@
                 <tbody id="preview-absensi-karyawan"></tbody>
             </table>
 
-            <div id="section-form-simpan-absensi">
+            <div id="section-calc-gaji" style="margin-top: 40px;" >
+                <div class="form-group">
+                    <label>Gaji</label>
+                    <input type="text" name="gaji" id="gaji" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Potongan</label>
+                    <input type="text" name="potongan" id="potongan" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Total Gaji</label>
+                    <input type="text" name="total_gaji" id="total_gaji" class="form-control" readonly >
+                </div>
+            </div>
+
+            <div id="section-form-simpan-absensi" style="margin-top: 40px;" >
                 <button type="submit" class="btn btn-primary" id="btn-save-absensi">SIMPAN</button>
             </div>
         </form>

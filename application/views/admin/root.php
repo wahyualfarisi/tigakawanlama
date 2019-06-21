@@ -9,9 +9,9 @@
   <!-- plugins:css -->
   
   <link rel="stylesheet" href="<?= base_url('assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') ?> ">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css" />
+  <link rel="stylesheet" href="<?= base_url('assets/css/animates.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/vendors/css/vendor.bundle.base.css') ?> ">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>" />
   <!-- endinject -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?> ">
@@ -236,6 +236,12 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/dashboard">
+              <span class="menu-title">Kelola User</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+          </li>
    
           
         </ul>
@@ -259,7 +265,7 @@
   <!-- container-scroller -->
 
 <div class="modal fade"  id="modalKaryawan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog " role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content ">
       <div class="modal-header">
         <h5 class="modal-title" id="modalKaryawan">Modal title</h5>
@@ -277,6 +283,7 @@
                 <th></th>
                 <th>NIK</th>
                 <th>Nama Karyawan</th>
+                <th>Jabatan</th>
                 <th></th>
             </tr>
           </thead>
@@ -293,10 +300,30 @@
 </div>
 
 
+<div class="modal fade"  id="modalNotif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalKaryawan">Konfirmasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="content-modal">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <!-- plugins:js -->
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.base.js') ?> "></script>
   <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/jquery.validate.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/notify.min.js') ?>" ></script>
   

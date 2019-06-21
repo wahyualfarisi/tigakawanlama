@@ -22,5 +22,11 @@ class M_karyawan extends CI_Model{
         return $query;
     }
 
+    function get_karyawan_not_admin()
+    {
+        $query = $this->db->query("SELECT * FROM t_karyawan, t_gaji WHERE t_karyawan.kode_jabatan = t_gaji.kode_jabatan AND t_gaji.nama_jabatan != 'admin' ");
+        return $query;
+    }
+
 
 }

@@ -49,6 +49,11 @@ class Administrator extends CI_Controller {
         $this->load->view('admin/pages/v_import_absensi');
     }
 
+    function absensi($id_absensi)
+    {
+        $this->load->view('admin/pages/v_absensi_detail');
+    }
+
     function uploadabsensi()
     {
         $this->load->view('admin/pages/v_upload_absensi');

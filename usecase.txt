@@ -1,0 +1,47 @@
+#admin use case 
+---------------------------------------------------------------------------------------------------------------
+    route : http://localhost/tigakawanlama/Administrator#/importabsensi/2019-07-25
+    menu  : Penggajian/Hitung Gaji
+
+            TODO:
+            #import absensi untuk akses admin . 
+                - karyawan hanya muncul dengan jabatan marketing & operational done
+                - lihat absensi 
+                - send to owner . 
+
+    route : http://localhost/tigakawanlama/Administrator#/informasigaji
+    menu : Penggajian/Informasi Gaji 
+            TODO:
+                - Tampilkan data Penggajian yang sudah di approved oleh owner 
+
+     route : http://localhost/tigakawanlama/Administrator#/infoabsensi
+     menu: Karyawan/Informasi Absensi 
+            TODO:
+                - show absensi karyawan , order by date
+
+     route: 
+     menu : Kelola User 
+            TODO:
+                - crud administrator
+--------------------------------------------------------------------------------------------------------------
+
+#owner use case 
+    menu: DASHBOARD
+
+
+
+
+    menu: Informasi / Approval Gaji
+
+
+
+
+    menu: Informasi / Informasi Gaji 
+
+
+
+
+
+    menu: Laporan 
+        TODO:
+            - Laporan per-periode gaji (sortir)

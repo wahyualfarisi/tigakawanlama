@@ -8,7 +8,7 @@
 
 <div class="row animated fadeIn" >
     <div class="col-md-4 stretch-card grid-margin" id="labelWidgetAbsensi" >
-        <div class="card bg-gradient-info  card-img-holder text-white">
+        <!-- <div class="card bg-gradient-info  card-img-holder text-white">
             <div class="card-body">                             
                 <h4 class="font-weight-normal mb-3">25 Juni 2019
                 <i class="mdi mdi-bookmark mdi-24px float-right"></i>
@@ -16,7 +16,7 @@
                 <h2 class="mb-2">On Process</h2>
                 <h5>3 Absensi Berhasil Di import</h5>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="col-md-8 grid-margin" style="margin-top: 15px;">
@@ -75,12 +75,18 @@
     </div>
 </div>
 
+<div class="col-6" id="sectionACC" style="margin-top: 40px;" >
+    <div class="form-group">
+        <h5>Kirim ke owner</h5>
+        <button class="btn btn-primary" id="btn-send-to-owner" >Kirim</button>
+    </div>
+</div>
+
 <div class="col-lg-12 grid-margin stretch-card animated fadeInLeft" style="margin-top:20px;">
     <div class="card">
     <div class="card-body">
         <h4 class="card-title">Data Penerima Gaji</h4>
         <p class="card-description">
-        Add class <code>.table-striped</code>
         </p>
 
 

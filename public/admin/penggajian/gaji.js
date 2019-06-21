@@ -32,9 +32,13 @@ var PenggajianUI = (function() {
                     var date = new Date(item.tgl_penggajian).getDate();
 
                     if(item.status_penggajian === 'process'){
+                        status     = 'Menunggu Upload absensi';
                         bgGradient = 'bg-gradient-info';
+                        locationbutton = '<a href="#/importabsensi/'+item.tgl_penggajian+' " class="btn btn-info" > Import Absensi </a>';
                     }else{
+                        status     = 'Menunggu Approved Owner';
                         bgGradient = 'bg-gradient-success';
+                        locationbutton = '';
                     }
 
 
@@ -46,8 +50,9 @@ var PenggajianUI = (function() {
                             html += '</h4>';
 
                             html += '<h3 class="mb-5">'+item.status_penggajian+'</h3>';
+                            html += '<p> '+status+' </p>';
                             html += '<h6 class="card-text">';
-                            html += '<a href="#/importabsensi/'+item.tgl_penggajian+' " class="btn btn-info" > Import Absensi </a>';
+                            html += locationbutton;
                             html += '</h6>'
                         html += '</div>';
                     html += '</div>';

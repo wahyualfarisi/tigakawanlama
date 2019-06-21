@@ -4,20 +4,31 @@ var UploadabsensiDOM = {
     formUploaded: '#form-upload-absensi',
     preview: '#preview-absensi-karyawan',
     sectionUpload: '#section-upload',
-    showKaryawan: '#show-current-karyawan'
-
+    sectionCalcGaji: '#section-calc-gaji',
+    showKaryawan: '#show-current-karyawan',
+    labelMsg: '#messages',
+    btnSaveAbsensi: '#btn-save-absensi'
 }
+var perJamTelat = [];
 
 
 var UploadabsensiUI = (function() {
         return {
             previewAbsensi: function(obj){
                 console.log(obj)
-                var html = '' , i = 0;
+                var html = '' , i = 0, label;
                 if(obj.length > 0)
                 {
                     obj.forEach(function(item) {
+                        item.telat_perjam !== 0 ? perJamTelat.push(item.telat_perjam) : false;
+
+                        if(item.nik.toString() !== GLOBAL_NIK){
+                            label = 'bg-gradient-danger';
+                        }else{
+                            label = '';
+                        }
                         html += '<tr>';
+                                html += '<td class="'+label+'" ><input type="text" name="nik[]" class="form-control" value="'+item.nik+'"  readonly  /> </td>';
                                 html += '<td><input type="text" name="tgl_absen[]" class="form-control" value="'+item.tgl_absen+'"  readonly  /> </td>';
                                 html += '<td><input type="text" name="jam_masuk[]" class="form-control" value="'+item.jam_masuk+'"  readonly  /></td>';
                                 html += '<td><input type="text" name="jam_keluar[]" class="form-control" value="'+item.jam_keluar+'"  readonly  /></td>';
@@ -26,17 +37,39 @@ var UploadabsensiUI = (function() {
                                 html += '<td><input type="text" name="terlambat[]" class="form-control" value="'+item.terlambat+'"  readonly  /></td>';
                                 html += '<td><input type="text" name="total_jam_kerja[]" class="form-control" value="'+item.total_jam_kerja+'"  readonly  /></td>';
                         html += '</tr>';
-                    })
+                    });
                 }
+
+                if(obj[0].nik.toString() !== GLOBAL_NIK.toString() ){
+                    $(UploadabsensiDOM.labelMsg).html('Nik Tidak Sesuai');
+                    $(UploadabsensiDOM.btnSaveAbsensi).css('display','none');
+                    $(UploadabsensiDOM.sectionCalcGaji).css('display','none');
+                }else{
+                    $(UploadabsensiDOM.btnSaveAbsensi).css('display','block');
+                    $(UploadabsensiDOM.sectionCalcGaji).css('display','block');
+
+                    //load perhitungan gaji
+                    var getDataGaji   = localStorage.getItem('datagaji');
+                    var parseJson     = JSON.parse(getDataGaji);
+                    var totalTelat    = perJamTelat.reduce((a,b) => a + b, 0);
+
+                    var totalPotongan = totalTelat * parseInt(parseJson[0].potongan) ;
+                    $('#gaji').val(parseJson[0].gaji);
+                    $('#potongan').val(totalPotongan);
+                    $('#total_gaji').val(parseInt(parseJson[0].gaji - parseInt(totalPotongan) )); 
+                }
+
                 $(UploadabsensiDOM.preview).html(html);
             },
             showKaryawan: function(data){
+                localStorage.setItem('datagaji', JSON.stringify(data) );
                 var html = '';
                 if(data.length > 0){
                     data.forEach(function(item) {
                         html += '<tr>';
                             html += '<td>'+item.nik+'</td>';
                             html += '<td>'+item.nama_depan+' '+item.nama_belakang+'</td>';
+                            html += '<td>'+item.kode_jabatan+' </td>';
                             html += '<td>'+item.nama_jabatan+' </td>';
                             html += '<td>'+GLOBAL_TGL_PENGGAJIAN+'</td>';
                         html += '</tr>';
@@ -106,6 +139,11 @@ var UploadabsensiController = (function(UIupload) {
                 async: false,
                 success: function(data){
                     console.log(data);
+                    var parse = JSON.parse(data);
+                    if(parse.code === 200){
+                        $.notify(parse.msg, 'success');
+                        location.hash = '#/importabsensi/'+SEGMENT;
+                    }
                 }
             })
         })
@@ -128,7 +166,7 @@ var UploadabsensiController = (function(UIupload) {
     return {
         init: function(){
             console.log('initalize app upload absensi')
-           
+            $(UploadabsensiDOM.sectionCalcGaji).css('display','none')
             setupImportListener();
             load_karyawannik();
         }
