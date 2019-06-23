@@ -176,7 +176,11 @@ var createdAbsnsiController = (function(CreatedUI) {
                         contentType: false,
                         cache: false,
                         async: false,
+                        beforeSend: function(){
+                            console.log('sedang menambahkan ...');
+                        },
                         success: function(data){
+                            console.log('sukses');
                             var parse = JSON.parse(data);
                             if(parse.code === 200){
                                 $.notify(parse.msg, 'success');
