@@ -90,5 +90,6 @@
 <script>
     var GLOBAL_NIK = '<?= $_GET['nik'] ?>';
     var GLOBAL_TGL_PENGGAJIAN = '<?= $_GET['tgl_penggajian'] ?>';
+    window.scrollTo(500,0)
 </script>
 <script src="<?= base_url('public/admin/absensi/uploadabsensi.js') ?>" ></script>

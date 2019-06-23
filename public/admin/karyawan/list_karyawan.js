@@ -23,7 +23,7 @@ var listKaryawanUI = (function() {
                                 html += '<h2 class="mb-5">'+item.nik+'</h2>';
                                 html += '<p> '+item.email+' </p>';
                                 html += '<h6 class="card-text">';
-                                html += '<button class="btn btn-info" > Detail </button>';
+                                html += '<a href="#/detailkaryawan/'+item.nik+'" class="btn btn-info" > Detail </a>';
                                 html += '</h6>'
                             html += '</div>';
                         html += '</div>';

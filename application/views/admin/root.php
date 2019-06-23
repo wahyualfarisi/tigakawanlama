@@ -223,7 +223,7 @@
           </li>
 
            <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-karyawan" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-karyawan" aria-expanded="false" aria-controls="ui-karyawan">
               <span class="menu-title">Karyawan</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -237,9 +237,9 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/dashboard">
+            <a class="nav-link" href="#/kelolauser">
               <span class="menu-title">Kelola User</span>
-              <i class="mdi mdi-home menu-icon"></i>
+              <i class="mdi mdi-users menu-icon"></i>
             </a>
           </li>
    

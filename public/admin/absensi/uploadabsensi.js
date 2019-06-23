@@ -7,7 +7,8 @@ var UploadabsensiDOM = {
     sectionCalcGaji: '#section-calc-gaji',
     showKaryawan: '#show-current-karyawan',
     labelMsg: '#messages',
-    btnSaveAbsensi: '#btn-save-absensi'
+    btnSaveAbsensi: '#btn-save-absensi',
+    btnReupload: '#btn-reupload'
 }
 var perJamTelat = [];
 
@@ -41,7 +42,16 @@ var UploadabsensiUI = (function() {
                 }
 
                 if(obj[0].nik.toString() !== GLOBAL_NIK.toString() ){
-                    $(UploadabsensiDOM.labelMsg).html('Nik Tidak Sesuai');
+                    $(UploadabsensiDOM.labelMsg).css('display','block');
+                    var html2 = '';
+                    html2 += '<div style="margin-top: 20px;" >';
+                        html2 += '<p class="text-center" style="color: red; font-weight: bold; font-size: 15px;"> Nik Tidak Sesuai, Silahkan Pilih file sesuai nik karyawan </p>';
+                        html2 += '<div style="margin-top: 20px; margin-bottom: 20px;" class="text-center" >';
+                            html2 += '<button class="btn btn-gradient-primary" id="btn-reupload"> Upload Ulang </button>';
+                        html2 += '</div>';
+                    html2 += '</div>';
+
+                    $(UploadabsensiDOM.labelMsg).html(html2);
                     $(UploadabsensiDOM.btnSaveAbsensi).css('display','none');
                     $(UploadabsensiDOM.sectionCalcGaji).css('display','none');
                 }else{
@@ -146,6 +156,12 @@ var UploadabsensiController = (function(UIupload) {
                     }
                 }
             })
+        });
+
+        $(document).on('click', UploadabsensiDOM.btnReupload, function() {
+            $(UploadabsensiDOM.preview).html("");
+            $(UploadabsensiDOM.sectionUpload).css('display','block').addClass("animaed fadeInLeft");
+            $(UploadabsensiDOM.labelMsg).css('display','none');
         })
     }
 

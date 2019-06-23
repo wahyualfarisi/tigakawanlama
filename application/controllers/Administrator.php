@@ -39,6 +39,11 @@ class Administrator extends CI_Controller {
         $this->load->view('admin/pages/v_list_karyawan');
     }
 
+    function detailkaryawan($nik)
+    {
+        $this->load->view('admin/pages/v_detail_karyawan');
+    }
+
     function infoabsensi()
     {
         $this->load->view('admin/pages/v_infoabsensi');
@@ -57,5 +62,10 @@ class Administrator extends CI_Controller {
     function uploadabsensi()
     {
         $this->load->view('admin/pages/v_upload_absensi');
+    }
+
+    function kelolauser()
+    {
+        $this->load->view('admin/pages/v_kelola_user');
     }
 }

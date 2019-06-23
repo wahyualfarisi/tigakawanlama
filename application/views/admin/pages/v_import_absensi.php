@@ -97,6 +97,7 @@
                 <th>Nik</th>
                 <th>Nama Lengkap</th>
                 <th>Jabatan</th>
+                <th>Gaji yang diterima</th>
                 <th>Status</th>
                 <th>Absensi</th>
             </tr>
@@ -109,6 +110,9 @@
 
 
 
+<script>
+    window.scrollTo(500,0)
+</script>
 
 <script>
     SEGMENT = '<?= $this->uri->segment(3) ?>';

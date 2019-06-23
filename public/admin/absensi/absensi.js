@@ -25,7 +25,7 @@ var createdAbsensiUI = (function() {
     return {
         getAbsensiCreated: function(obj){
             console.log(obj)
-            var html, no = 1, labelAbsensi;
+            var html, no = 1, labelAbsensi, totalGaji, resultGaji;
 
             if(obj.length > 0 ){
                 obj.forEach(function(item) {
@@ -34,11 +34,17 @@ var createdAbsensiUI = (function() {
                     }else{
                         labelAbsensi = '<a href="#/uploadabsensi?nik='+item.nik+'&&tgl_penggajian='+SEGMENT+'&&id_absensi='+item.id_absensi+' " class="btn btn-gradient-primary btn-fw"> Upload Absensi </a>';
                     }
+                    
+                    totalGaji = parseInt(item.total_gaji) - parseInt(item.potongan) ;
+                    isNaN(totalGaji) ? resultGaji = '-' :  resultGaji = totalGaji;
+
+                    
                     html += '<tr>';
                         html += '<td>'+no+++' </td>';
                         html += '<td>'+item.nik+'</td>'
                         html += '<td>'+item.nama_lengkap+'</td>';
                         html += '<td>'+item.nama_jabatan+' </td>';
+                        html += '<td>'+resultGaji+' </td>';
                         html += '<td>'+item.status+' </td>';
                         html += '<td>'+labelAbsensi+' </td>';
                     html += '</tr>';
