@@ -118,7 +118,7 @@ var UploadabsensiController = (function(UIupload) {
                 },
                 submitHandler: function(form){
                     $.ajax({
-                        url: BASE_URL+'master/Absensi/absensi/upload_absensi',
+                        url: BASE_URL+'master/absensi/Absensi/upload_absensi',
                         method: 'post',
                         data: new FormData(form),
                         contentType: false,
