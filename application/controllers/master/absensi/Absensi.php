@@ -44,23 +44,27 @@ class Absensi extends CI_Controller {
 
     function created_absensi()
     {
+        $nik = $this->input->post('nik_karyawan');
+        $tgl_penggajian = $this->input->post('tanggal_penggajian');
+
         $data = array(
-            'id_absensi'     => rand(1, 3000),
-            'nik'            => $this->input->post('nik_karyawan'),
+            'id_absensi'     => rand(1, 300),
+            'nik'            => $nik,
             'tanggal_import' => date('Y-m-d'),
             'status'         => $this->input->post('status'),
-            'tgl_penggajian' => $this->input->post('tanggal_penggajian')
+            'tgl_penggajian' => $tgl_penggajian
         );
         $where = array(
-            'nik' => $this->input->post('nik_karyawan'),
-            'tgl_penggajian' => $this->input->post('tanggal_penggajian')
+            'nik' => $nik,
+            'tgl_penggajian' => $tgl_penggajian
         );
-        $check = $this->m_core->get_where($this->table, $where);
-        if($check->num_rows() > 0){
-            $res = array('msg' => 'Gagal Menambahkan, Nik Sudah Di tambahkan', 'code' => 400);
-            echo json_encode($res);
-            return;
-        }
+
+        // $check = $this->m_core->get_where($this->table, $where);
+        // if($check->num_rows() > 0){
+        //     $res = array('msg' => 'Gagal Menambahkan, Nik Sudah Di tambahkan', 'code' => 400);
+        //     echo json_encode($res);
+        //     return;
+        // }
 
         $insert = $this->m_core->add_data($this->table, $data);
         if($insert){
