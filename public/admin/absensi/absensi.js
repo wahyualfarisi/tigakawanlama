@@ -181,10 +181,10 @@ var createdAbsnsiController = (function(CreatedUI) {
                         },
                         success: function(data){
                             console.log('sukses');
+                            load_absensi_created();
                             var parse = JSON.parse(data);
                             if(parse.code === 200){
                                 $.notify(parse.msg, 'success');
-                                load_absensi_created();
                                 $(createdAbsensiDOM.nik_karyawan).val("")
                             }else{
                                 $.notify(parse.msg, 'error');

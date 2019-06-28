@@ -242,6 +242,13 @@
               <i class="mdi mdi-users menu-icon"></i>
             </a>
           </li>
+
+           <li class="nav-item">
+            <a class="nav-link" href="#/kelolajabatan">
+              <span class="menu-title">Kelola Jabatan</span>
+              <i class="mdi mdi-users menu-icon"></i>
+            </a>
+          </li>
    
           
         </ul>
@@ -318,6 +325,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 
   <!-- plugins:js -->

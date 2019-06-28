@@ -5,17 +5,23 @@ class Gaji extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->table = 't_gaji';
+        $this->table = 't_jabatan';
         $this->primary = 'kode_jabatan';
         $this->load->model('m_core');
     }
 
-    function add()
+    function fetch_json()
+    {
+        $data = $this->m_core->get_all_table($this->table, $this->primary, 'asc');
+        echo json_encode($data->result());
+    }
+
+    public function add()
     {
         $data = array(
-            $this->primary => $this->input->post('kode_jabatan'),
+            $this->primary => $this->generateAutoKode(),
             'nama_jabatan' => $this->input->post('nama_jabatan'),
-            'gaji'         => $this->input->post('gaji'),
+            'gaji'         => $this->input->post('jumlah_gaji'),
             'potongan'     => $this->input->post('potongan')
         );
 
@@ -27,6 +33,7 @@ class Gaji extends CI_Controller {
             $res = array('msg' => 'Gagal Menambahkan Data Gaji', 'code' => 400 );
             echo json_encode($res);
         }
+        
     }
 
     function delete()
@@ -75,6 +82,32 @@ class Gaji extends CI_Controller {
         }
 
         echo $output;
+    }
+
+    public function generateAutoKode()
+    {
+        $data = $this->m_core->autoNumber($this->primary, $this->table);
+        $kode = $data->result()[0]->maxKode;
+        $nourut = (int) substr($kode, 3, 3);
+        $nourut++;
+
+        $char  = 'kd_';
+        $newID = $char . sprintf('%03s', $nourut);
+        return $newID;
+    }
+
+    function test()
+    {
+        $data = $this->m_core->autoNumber($this->primary, $this->table);
+        print_r($data->result() );
+        $kode = $data->result()[0]->maxKode;
+        $nourut = (int) substr($kode, 3, 3);
+        $nourut++;
+
+        $char  = 'kd_';
+        $newID = $char . sprintf('%03s', $nourut);
+
+        echo $newID;
     }
 
 

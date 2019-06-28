@@ -68,4 +68,9 @@ class Administrator extends CI_Controller {
     {
         $this->load->view('admin/pages/v_kelola_user');
     }
+
+    function kelolajabatan()
+    {
+        $this->load->view('admin/pages/v_kelola_jabatan');
+    }
 }

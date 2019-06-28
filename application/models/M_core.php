@@ -44,8 +44,13 @@ class M_core extends CI_Model {
     function delete_rows($table, $where)
     {
         $this->db->where($where);
-        return $this->db->delete($table);
-        
+        return $this->db->delete($table); 
+    }
+
+    function autoNumber($field, $table)
+    {
+        $query = "SELECT MAX($field) as maxKode FROM $table ";
+        return $this->db->query($query);
     }
 
 
