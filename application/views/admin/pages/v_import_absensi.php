@@ -93,6 +93,7 @@
         <table class="table table-striped">
         <thead>
             <tr>
+                <th></th>
                 <th>No</th>
                 <th>Nik</th>
                 <th>Nama Lengkap</th>

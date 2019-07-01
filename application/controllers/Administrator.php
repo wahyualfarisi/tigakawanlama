@@ -7,6 +7,7 @@ class Administrator extends CI_Controller {
         parent::__construct();
         if($this->session->userdata('login') != 1){
             redirect(base_url() );
+            $this->output->cache(n);
         }
     }
 

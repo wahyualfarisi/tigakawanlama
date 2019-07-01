@@ -17,7 +17,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Tanggal Penggajian</label>
                             <div class="col-sm-9">
-                            <input type="date" name="tanggal_penggajian" id="tanggal_penggajian" class="form-control" />
+                            <input type="date" name="tanggal_penggajian" id="tanggal_penggajian" class="form-control" min="2019-07-25" max="2019-08-1" />
                             </div>
                         </div>
                         </div>

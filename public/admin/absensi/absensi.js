@@ -14,14 +14,34 @@ var createdAbsensiDOM = {
     nik_karyawan: '#nik_karyawan',
     formSearchKaryawan: '#form-search-on-modal',
     formAddPenggajian: '#form-add-penggajian',
+    formDeleteAbsensi: '#form-delete',
     sectionACC: '#sectionACC',
     btnSendingOwner: '#btn-send-to-owner',
     modalNotif: '#modalNotif',
-    contentModal: '#content-modal'
+    modalDelete: '#modalDelete',
+    contentModal: '#content-modal',
+    btn_delete_absensi: '.btn-delete-absensi'
 }
 
 
 var createdAbsensiUI = (function() {
+
+    var formatRupiah = function(angka, prefix){
+        var numberString = angka.replace(/[^,\d]/g, '').toString()
+        var split        = numberString.split(',')
+        var sisa         = split[0].length % 3 
+        var rupiah       = split[0].substr(0, sisa)
+        var ribuan       = split[0].substr(sisa).match(/\d{3}/gi)
+
+        if(ribuan) {
+            var seperator = sisa ? '.' : ''
+            rupiah += seperator + ribuan.join('.')
+
+        }
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp.' + rupiah : '' )
+    }
+
     return {
         getAbsensiCreated: function(obj){
             console.log(obj)
@@ -30,16 +50,18 @@ var createdAbsensiUI = (function() {
             if(obj.length > 0 ){
                 obj.forEach(function(item) {
                     if(item.status === 'success'){
-                        labelAbsensi = '<a href="#/absensi/'+item.id_absensi+' " class="btn btn-gradient-success btn-fw"> Lihat Absensi </a>';
+                        labelAbsensi = '<a href="#/absensi/'+item.id_absensi+' " class="btn btn-gradient-success btn-fw btn-sm"> Lihat Absensi </a>';
+                        
                     }else{
                         labelAbsensi = '<a href="#/uploadabsensi?nik='+item.nik+'&&tgl_penggajian='+SEGMENT+'&&id_absensi='+item.id_absensi+' " class="btn btn-gradient-primary btn-fw"> Upload Absensi </a>';
                     }
                     
                     totalGaji = parseInt(item.total_gaji) - parseInt(item.potongan) ;
-                    isNaN(totalGaji) ? resultGaji = '-' :  resultGaji = totalGaji;
+                    isNaN(totalGaji) ? resultGaji = '-' :  resultGaji =  formatRupiah(totalGaji.toString()) ;
 
                     
                     html += '<tr>';
+                        html += '<td><button data-idabsensi="'+item.id_absensi+'" class="btn-delete-absensi"> <i class="mdi mdi-delete-forever"> </i> </button> </td>';
                         html += '<td>'+no+++' </td>';
                         html += '<td>'+item.nik+'</td>'
                         html += '<td>'+item.nama_lengkap+'</td>';
@@ -51,21 +73,25 @@ var createdAbsensiUI = (function() {
                 })
             }else{
                 html += '<tr>';
-                     html += '<td colspan="6" class="text-center"> <img src="'+BASE_URL+'assets/img/no_data.svg'+'" width="400px" /> <br> Tidak Ada Data </td>';
+                     html += '<td colspan="7" class="text-center"> <img src="'+BASE_URL+'assets/img/no_data.svg'+'" width="400px" /> <br> Tidak Ada Data </td>';
                 html += '</tr>';
             }
             $(createdAbsensiDOM.labelShowCreatedAbsensi).html(html);
         },
         getProgress: function(data){
+            var text = '';
             if(data.total_absensi === data.total_karyawan) {
                 $(createdAbsensiDOM.sectionACC).css('display','block')
+                text += '(Completed)'
+            }else{
+                text += '';
             }
             var countprogress = 100 / data.total_karyawan ;
             var result = countprogress;
             var percentage = data.total_absensi * result.toFixed(1);
 
             var html = '';
-            html += '<label>Progress '+data.total_absensi+' dari '+data.total_karyawan+' Karyawan </label>';
+            html += '<label>Progress '+data.total_absensi+' dari '+data.total_karyawan+' Karyawan '+text+'</label>';
             html += '<div class="progress">';
                 html += '<div class="progress-bar bg-success" role="progressbar" style="width: '+percentage.toString()+'%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>';
             html += '</div>';  
@@ -91,7 +117,6 @@ var createdAbsensiUI = (function() {
             if(data.length > 0){
                 data.forEach(function(item) {
                     html += '<tr>';
-                      html += '<td> <input type="checkbox" value="'+item.nik+'" /></td>';
                       html += '<td>'+item.nik+'</td>';
                       html += '<td>'+item.nama_depan+'</td>';
                       html += '<td>'+item.nama_jabatan+'</td>';
@@ -99,7 +124,7 @@ var createdAbsensiUI = (function() {
                     html += '</tr>';
                 });
             }else{
-                html += 'Tidak ad data';
+                html += 'Tidak Ada Lagi Data Karyawan';
             }
             $(createdAbsensiDOM.labelShowOnModalKaryawan).html(html);
         }
@@ -108,7 +133,9 @@ var createdAbsensiUI = (function() {
 
 
 var createdAbsnsiController = (function(CreatedUI) {
-
+    var URI = {
+        deleteAbsensi: BASE_URL+'master/absensi/Absensi/deleteAbsensi'
+    }
     var createdAbsensiListener = function(){
 
         $(createdAbsensiDOM.btnPilihKaryawan).on('click', function() {
@@ -234,6 +261,25 @@ var createdAbsnsiController = (function(CreatedUI) {
            })
         })
 
+        /**
+         * show modal delete absensi
+         */
+        $(createdAbsensiDOM.labelShowCreatedAbsensi).on('click', createdAbsensiDOM.btn_delete_absensi, function() {
+            var idabsensi = $(this).data('idabsensi');
+            $('#idTarget').val(idabsensi)
+            ModalAction($(createdAbsensiDOM.modalDelete), 'show')
+        })
+
+        /**
+         * event on submit to execute delete absensi
+         */
+        $(createdAbsensiDOM.formDeleteAbsensi).on('submit', function(e) {
+            e.preventDefault() 
+            alert('submited')
+        }) 
+
+
+
 
     }
 
@@ -282,6 +328,25 @@ var createdAbsnsiController = (function(CreatedUI) {
                 CreatedUI.widgetAbsensi(data);
             }
         })
+    }
+
+    var postData = function(url, form, callback) {
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: new FormData(form),
+            processData: false,
+            contentType: false,
+            async: false,
+            cache: false,
+            success: function(data){
+                callback(data)
+            }
+        })
+    }
+
+    var ModalAction = function(modalName, method){
+        $(modalName).modal(method)
     }
 
     return {

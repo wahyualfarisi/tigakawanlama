@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Purple Admin</title>
+  <title>Login System</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="<?= base_url('assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') ?> ">
   <link rel="stylesheet" href="<?= base_url('assets/vendors/css/vendor.bundle.base.css') ?> ">
@@ -18,14 +18,13 @@
   <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?> " />
    <style>
     #myProgress {
-    width: 100%;
-    background-color: #ddd;
+      width: 100%;
+      background-color: #ddd;
     }
-
-  #myBar {
-    width: 1%;
-    height: 30px;
-  }
+    #myBar {
+      width: 1%;
+      height: 30px;
+    }
    </style>
 </head>
 

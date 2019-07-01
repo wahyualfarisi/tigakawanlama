@@ -140,7 +140,9 @@ var PenggajianController = (function(UIPenggajian) {
 
         $(PenggajianDom.fieldStatus).on('change', function() {
             load_data_penggajian($(this).val())
-        })
+        });
+
+        
 
     }
 

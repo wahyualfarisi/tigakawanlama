@@ -47,17 +47,19 @@ class Gaji extends CI_Controller {
             $res = array('msg' => 'Gagal Menghapus Data', 'code' => 400);
             echo json_encode($res);
         }
+      
     }
 
     function update()
     {
-        $where = array($this->primary => $this->input->post('kode_jabatan'));
+        $where = array($this->primary => $this->input->post('kode_jabatan_edit'));
         $data  = array(
-            $this->primary => $this->input->post('kode_jabatan'),
-            'nama_jabatan' => $this->input->post('nama_jabatan'),
-            'gaji'         => $this->input->post('gaji'),
-            'potongan'     => $this->input->post('potongan')
+            $this->primary => $this->input->post('kode_jabatan_edit'),
+            'nama_jabatan' => $this->input->post('nama_jabatan_edit'),
+            'gaji'         => $this->input->post('jumlah_gaji_edit'),
+            'potongan'     => $this->input->post('potongan_edit')
         );
+        
         $update = $this->m_core->update_where($this->table, $data , $where);
         if($update){
             $res = array('msg' => 'Berhasil Mengupdate data gaji', 'code' => 200);
@@ -66,6 +68,8 @@ class Gaji extends CI_Controller {
             $res = array('msg' => 'Gagal Mengupdate Data Gaji', 'code' => 400);
             echo json_encode($res);
         }
+
+        
     }
 
     function show_jabatan()

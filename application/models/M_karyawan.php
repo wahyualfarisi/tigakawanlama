@@ -18,13 +18,13 @@ class M_karyawan extends CI_Model{
 
     function fetch_karyawan($nik)
     {
-        $query = $this->db->query("SELECT * FROM t_karyawan , t_gaji WHERE t_karyawan.kode_jabatan = t_gaji.kode_jabatan AND t_karyawan.nik = '$nik' ");
+        $query = $this->db->query("SELECT * FROM t_karyawan , t_jabatan WHERE t_karyawan.kode_jabatan = t_jabatan.kode_jabatan AND t_karyawan.nik = '$nik' ");
         return $query;
     }
 
     function get_karyawan_not_admin()
     {
-        $query = $this->db->query("SELECT * FROM t_karyawan, t_gaji WHERE t_karyawan.kode_jabatan = t_gaji.kode_jabatan AND t_gaji.nama_jabatan != 'admin' ");
+        $query = $this->db->query("SELECT * FROM t_karyawan, t_jabatan WHERE t_karyawan.kode_jabatan = t_jabatan.kode_jabatan AND t_jabatan.nama_jabatan != 'admin' ");
         return $query;
     }
 

@@ -275,19 +275,17 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content ">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalKaryawan">Modal title</h5>
+        <h5 class="modal-title" id="modalKaryawan">Data Penerima Gaji</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div style="margin-top: 20px; margin-bottom: 20px;" >
-          <button id="checkall" class="btn btn-primary">Pilih Semua</button>
         </div>
         <table class="table table-striped">
           <thead>
              <tr>
-                <th></th>
                 <th>NIK</th>
                 <th>Nama Karyawan</th>
                 <th>Jabatan</th>
@@ -319,6 +317,33 @@
       <div class="modal-body" id="content-modal">
 
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade"  id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalKaryawan">Konfirmasi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body" id="content-modal">
+          <form id="form-delete">
+            <div class="form-group">
+              <input type="hidden" name="idTarget" id="idTarget"  >
+            </div>
+            <div class="form-group">
+              <input type="text" name="confirm" id="confirm" class="form-control">
+            </div>
+            <button class="btn btn-gradient-primary" type="submit">HAPUS</button>
+          </form>
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
