@@ -90,8 +90,8 @@ class Gaji extends CI_Controller {
 
     public function generateAutoKode()
     {
-        $data = $this->m_core->autoNumber($this->primary, $this->table);
-        $kode = $data->result()[0]->maxKode;
+        $data   = $this->m_core->autoNumber($this->primary, $this->table);
+        $kode   = $data->result()[0]->maxKode;
         $nourut = (int) substr($kode, 3, 3);
         $nourut++;
 
@@ -105,10 +105,10 @@ class Gaji extends CI_Controller {
         $data = $this->m_core->autoNumber($this->primary, $this->table);
         print_r($data->result() );
         $kode = $data->result()[0]->maxKode;
-        $nourut = (int) substr($kode, 3, 3);
+        $nourut = (int) substr($kode, 4, 4);
         $nourut++;
 
-        $char  = 'kd_';
+        $char  = 'abs-'.date('m').'-';
         $newID = $char . sprintf('%03s', $nourut);
 
         echo $newID;

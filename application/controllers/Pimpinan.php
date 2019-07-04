@@ -13,4 +13,9 @@ class Pimpinan extends CI_Controller {
        $this->load->view('pimpinan/root');
    }
 
+   function dashboard()
+   {
+       $this->load->view('pimpinan/pages/dashboard');
+   }
+
 }

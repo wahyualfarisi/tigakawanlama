@@ -48,7 +48,7 @@ class Absensi extends CI_Controller {
         $tgl_penggajian = $this->input->post('tanggal_penggajian');
 
         $data = array(
-            'id_absensi'     => rand(1, 300),
+            'id_absensi'     => $this->generateCodeMatic(),
             'nik'            => $nik,
             'tanggal_import' => date('Y-m-d'),
             'status'         => $this->input->post('status'),
@@ -59,12 +59,6 @@ class Absensi extends CI_Controller {
             'tgl_penggajian' => $tgl_penggajian
         );
 
-        // $check = $this->m_core->get_where($this->table, $where);
-        // if($check->num_rows() > 0){
-        //     $res = array('msg' => 'Gagal Menambahkan, Nik Sudah Di tambahkan', 'code' => 400);
-        //     echo json_encode($res);
-        //     return;
-        // }
 
         $insert = $this->m_core->add_data($this->table, $data);
         if($insert){
@@ -74,6 +68,7 @@ class Absensi extends CI_Controller {
             $res = array('msg' => 'Gagal Menambahkan', 'code' => 400);
             echo json_encode($res);
         }
+        
     
     }
 
@@ -228,19 +223,72 @@ class Absensi extends CI_Controller {
             $res = array('msg' => 'Gagal mengirim absensi', 'code' => 400);
             echo json_encode($res);
         }
-        
+    }
+
+    function deleteAbsensi()
+    {
+        $id = $this->input->post('idTarget');
+        $where = array('id_absensi' => $id);
+        $delete = $this->m_core->delete_rows($this->table, $where);
+        if($delete){
+            $res = array('msg' => 'Berhasil Menghapus Data Absensi', 'code' => 200);
+            echo json_encode($res);
+        }else{
+            $res = array('msg' => 'Gagal Menghapus Data Absensi' ,'code' => 400);
+            echo json_encode($res);
+        }
+    }
+
+    function fetch_absensi_karyawan($id)
+    {
+        $data = $this->m_absensi->fetch_absensi_karyawan($id);
+        foreach($data->result() as $item)
+        {
+            $check_telat       = terlambat($item->jam_masuk, $item->scan_masuk);
+            if($check_telat < 0){
+                $terlambat     = selisih($item->jam_masuk, $item->scan_masuk);
+                $perJam        = getJam($item->jam_masuk, $item->scan_masuk);
+            }else{
+                $terlambat     = '-';
+                $perJam        = 0;
+            }
+            $absensi[] = array(
+                'tgl_absen'   => $item->tgl_absen,
+                'jam_masuk'   => $item->jam_masuk,
+                'jam_keluar'  => $item->jam_keluar,
+                'scan_masuk'  => $item->scan_masuk,
+                'scan_keluar' => $item->scan_keluar,
+                'terlambat'   => $terlambat,
+                'telat_perjam' => $perJam,
+                'total_jam_kerja' => selisih($item->scan_keluar, $item->scan_masuk)
+            );
+
+
+            
+        }
+        echo json_encode($absensi);
+    }
+
+    function generateCodeMatic()
+    {
+        $data = $this->m_core->autoNumber($this->primary, $this->table);
+        $kode = $data->result()[0]->maxKode;
+        $nourut = (int) substr($kode, 3 , 3);
+        $nourut++;
+
+        $char = 'ab-';
+        $newID = $char . sprintf('%03s', $nourut);
+        return $newID;
     }
 
 
     function testing()
     {
-        $terlambat =  terlambat("08:00", "09:10");
-        if($terlambat < 0){
-            echo "kamu terlambat ".selisih("08:00","09:10");
-        }else{
-            echo "kamu tidak terlambat";
-        }
+        $data = $this->m_absensi->fetch_absensi_karyawan('ab-003');
+        echo json_encode($data->result());
     }
+
+ 
 
    
 }

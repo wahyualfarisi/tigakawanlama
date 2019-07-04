@@ -1,4 +1,3 @@
-console.log('absensi is running', SEGMENT);
 var createdAbsensiProgress = {
     value: 0
 }
@@ -44,7 +43,6 @@ var createdAbsensiUI = (function() {
 
     return {
         getAbsensiCreated: function(obj){
-            console.log(obj)
             var html, no = 1, labelAbsensi, totalGaji, resultGaji;
 
             if(obj.length > 0 ){
@@ -216,20 +214,16 @@ var createdAbsnsiController = (function(CreatedUI) {
                             }else{
                                 $.notify(parse.msg, 'error');
                             }  
+                            
                         }
                     })
                 }
             }
         );
 
-        $(createdAbsensiDOM.modalKaryawan).on('click','#btn-pilih', function() {
-            alert('cliked');
-        });
-
-        $(createdAbsensiDOM.modalKaryawan).on('click', '#checkall', function() {
-            $('input:checkbox').not(this).prop('checked', this.checked)
-        });
-
+        /**
+         * ACC to owner On Modal
+         */
         $(createdAbsensiDOM.btnSendingOwner).on('click', function() {
             var html = '';
             html += '<div>';
@@ -238,25 +232,27 @@ var createdAbsnsiController = (function(CreatedUI) {
                     html += '<button class="btn btn-primary btn-kirim" > Lanjutkan </button>'
                 html += '</div>';
             html += '</div>';
-            $(createdAbsensiDOM.contentModal).html(html);
+            $(createdAbsensiDOM.contentModal).html(html)
             $(createdAbsensiDOM.modalNotif).modal('show')
         });
 
+        /**
+         * sending ACC to Owner
+         */
         $(createdAbsensiDOM.modalNotif).on('click', '.btn-kirim', function() {
            $.ajax({
                url: BASE_URL+'master/absensi/Absensi/waiting_approved',
                method: 'post',
                data: {status: 'waiting', tgl: SEGMENT},
                success: function(data){
-                    var parse = JSON.parse(data);
+                    var parse = JSON.parse(data)
                     if(parse.code === 200){
-                        $.notify(parse.msg, 'success');
-                        location.hash = '#/penggajian';
+                        $.notify(parse.msg, 'success')
+                        location.hash = '#/penggajian'
                         $(createdAbsensiDOM.modalNotif).modal('hide')
                     }else{
-                        $.notify(parse.msg, 'error');
+                        $.notify(parse.msg, 'error')
                     }
-                    console.log(data);
                }
            })
         })
@@ -275,15 +271,29 @@ var createdAbsnsiController = (function(CreatedUI) {
          */
         $(createdAbsensiDOM.formDeleteAbsensi).on('submit', function(e) {
             e.preventDefault() 
-            alert('submited')
-        }) 
+            var confirm = $('#confirm').val();
+            if(confirm !== 'confirm') return $.notify('Konfirmasi Salah', 'danger')
+
+            postData(URI.deleteAbsensi, this, function(data) {
+               var parse = JSON.parse(data)
+               if(parse.code === 200){
+                   ModalAction(createdAbsensiDOM.modalDelete, 'hide')
+                   $.notify(parse.msg, 'success')
+                   load_absensi_created()
+                   load_progress_absensi()
+               }else{
+                    $.notify(parse.msg, 'danger')
+               }
+            })
+        });
 
 
 
 
     }
 
-    var load_karyawan = function(query, callback){
+
+    const  load_karyawan = (query, callback) => {
         return $.ajax({
             url: BASE_URL+'master/absensi/Absensi/show_current_karyawan/'+SEGMENT,
             method: 'post',
@@ -297,7 +307,7 @@ var createdAbsnsiController = (function(CreatedUI) {
     }
 
 
-    var load_absensi_created = function(){
+    const load_absensi_created = () => {
         $.ajax({
             url: BASE_URL+'master/absensi/Absensi/show_absensi_created/'+SEGMENT,
             method: 'get',
@@ -308,7 +318,7 @@ var createdAbsnsiController = (function(CreatedUI) {
         })
     }
 
-    var load_progress_absensi = function() {
+    const load_progress_absensi = () => {
         $.ajax({
             url: BASE_URL+'master/absensi/Absensi/progress_absensi/'+SEGMENT,
             method: 'post',
@@ -319,7 +329,7 @@ var createdAbsnsiController = (function(CreatedUI) {
         })
     }
 
-    var load_widget_absensi = function() {
+    const load_widget_absensi =  () => {
         $.ajax({
             url: BASE_URL+'master/absensi/Absensi/show_data_widget/'+SEGMENT,
             method: 'get',
@@ -328,6 +338,10 @@ var createdAbsnsiController = (function(CreatedUI) {
                 CreatedUI.widgetAbsensi(data);
             }
         })
+    }
+
+    const fetch_absensi_karyawan = () => {
+        console.log(SEGMENT)
     }
 
     var postData = function(url, form, callback) {
@@ -345,6 +359,17 @@ var createdAbsnsiController = (function(CreatedUI) {
         })
     }
 
+    const load = (url, callback) => {
+        $.ajax({
+            url: url,
+            method: 'get',
+            dataType: 'json',
+            success: function(data){
+                callback(data)
+            }
+        })
+    }
+
     var ModalAction = function(modalName, method){
         $(modalName).modal(method)
     }
@@ -356,6 +381,7 @@ var createdAbsnsiController = (function(CreatedUI) {
             load_absensi_created();
             load_progress_absensi();
             load_widget_absensi();
+            fetch_absensi_karyawan()
         }
     }
 

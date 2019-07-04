@@ -33,5 +33,17 @@ class M_absensi extends CI_Model {
         return $query;
     }
 
+    function fetch_absensi_karyawan($id_absensi)
+    {
+        $query = "SELECT
+                  a.tgl_absen , a.jam_masuk, a.jam_keluar, a.scan_masuk, a.scan_keluar , 
+                  b.id_absensi AS absensi , b.tgl_penggajian, c.status_penggajian 
+                  FROM t_detail_absensi a 
+                    LEFT JOIN t_absensi b ON a.id_absensi = b.id_absensi 
+                    LEFT JOIN t_penggajian c ON b.tgl_penggajian = c.tgl_penggajian 
+                  WHERE b.id_absensi = '$id_absensi'";
+        return $this->db->query($query);
+    }
+
 
 }
