@@ -32,7 +32,7 @@
         <h4 class="font-weight-normal mb-3">Total Pengeluaran Gaji
         <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
         </h4>
-        <h2 class="mb-5">45,6334</h2>
+        <h2 class="mb-5">45,000,000</h2>
         
     </div>
     </div>

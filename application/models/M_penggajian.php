@@ -22,7 +22,7 @@ class M_penggajian extends CI_Model {
                          b.kode_admin, b.email, CONCAT(b.nama_depan, ' ', b.nama_belakang) as nama_admin,
                          COUNT(c.id_absensi) as jumlah_absensi,
                          SUM(d.total_gaji) as total_pengeluaran_gaji
-                  FROM t_penggajian a LEFT JOIN t_administrator b ON a.kode_admin = b.kode_admin
+                  FROM t_penggajian a LEFT JOIN t_admin b ON a.kode_admin = b.kode_admin
                                       LEFT JOIN t_absensi c ON a.tgl_penggajian = c.tgl_penggajian
                                       LEFT JOIN t_gaji_karyawan d ON c.id_absensi = d.id_absensi
                                       WHERE a.status_penggajian = 'waiting'

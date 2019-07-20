@@ -265,9 +265,6 @@ class Absensi extends CI_Controller {
                 'telat_perjam' => $perJam,
                 'total_jam_kerja' => selisih($item->scan_keluar, $item->scan_masuk)
             );
-
-
-            
         }
         echo json_encode($absensi);
     }

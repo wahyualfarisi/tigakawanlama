@@ -1,0 +1,21 @@
+#OWNER 
+
+    - show absensi 
+    - upload gaji admin 
+    - approved and reject process
+    
+
+    - Informasi Penggajian only is not status != waiting 
+    - preview detail penggajian 
+
+
+    - Laporan periode
+
+
+
+#KARYAWAN
+
+    - slip gaji 
+    - data absensi 
+
+

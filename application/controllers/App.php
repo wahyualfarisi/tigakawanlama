@@ -6,7 +6,7 @@ class App extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->tableadmin = 't_administrator';
+        $this->tableadmin = 't_admin';
         $this->tablekaryawan = 't_karyawan';
         $this->load->model('m_core');
         date_default_timezone_set("Asia/Bangkok");

@@ -51,7 +51,7 @@
                   <select name="akses" id="akses" class="form-control form-control-lg">
                       <option value=""> Pilih Akses </option>
                       <option value="karyawan">Karyawan</option>
-                      <option value="admin">Administrator</option>
+                      <option value="admin">Admin</option>
                       <option value="owner">Owner</option>
                   </select>
                 </div>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" id="btn-login">SIGN IN</button>
+                  <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" id="btn-login">LOGIN</button>
                 </div>
 
                 <div id="myProgress">
@@ -75,9 +75,7 @@
                 </div>
                 
               
-                <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                </div>
+                
               </form>
             </div>
           </div>

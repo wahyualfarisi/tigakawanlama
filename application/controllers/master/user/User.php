@@ -5,7 +5,7 @@ class User extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->table = 't_administrator';
+        $this->table = 't_admin';
         $this->primary = 'kode_admin';
         $this->load->model('m_core');
     }
@@ -38,6 +38,7 @@ class User extends CI_Controller {
         );
 
         $insert = $this->m_core->add_data($this->table, $data);
+        
         if($insert){
             $res = array(
                 'msg' => 'Data Berhasil Disimpan',
@@ -80,11 +81,11 @@ class User extends CI_Controller {
         );
 
         $data = array(
-            'email'      => $this->input->post('email_edit'),
-            'nama_depan' => $this->input->post('nama_depan_edit'),
+            'email'         => $this->input->post('email_edit'),
+            'nama_depan'    => $this->input->post('nama_depan_edit'),
             'nama_belakang' => $this->input->post('nama_belakang_edit'),
-            'password' => $this->input->post('password_edit'),
-            'akses'    => $this->input->post('akses_edit')
+            'password'      => $this->input->post('password_edit'),
+            'akses'         => $this->input->post('akses_edit')
         );
 
         $update = $this->m_core->update_where($this->table, $data, $where);
@@ -105,7 +106,7 @@ class User extends CI_Controller {
         $nourut = (int) substr($kode, 3, 3);
         $nourut++;
 
-        $previx = 'ad_';
+        $previx = 'adm';
         $newID  = $previx .sprintf('%03s', $nourut);
         return $newID;
     }
