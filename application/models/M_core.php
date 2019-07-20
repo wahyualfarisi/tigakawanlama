@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_core extends CI_Model {
 
+    function get_all($table)
+    {
+        return $this->db->get($table);
+    }
 
     function add_data($table, $data)
     {

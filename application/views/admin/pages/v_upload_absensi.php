@@ -67,10 +67,17 @@
                     <label>Gaji</label>
                     <input type="text" name="gaji" id="gaji" class="form-control" readonly>
                 </div>
+
+                <div class="form-group">
+                    <label>Lemburan</label>
+                    <input type="text" name="total_lembur" id="total_lembur" class="form-control" readonly>
+                </div>
+
                 <div class="form-group">
                     <label>Potongan</label>
                     <input type="text" name="potongan" id="potongan" class="form-control" readonly>
                 </div>
+               
                 <div class="form-group">
                     <label>Total Gaji</label>
                     <input type="text" name="total_gaji" id="total_gaji" class="form-control" readonly >

@@ -21,6 +21,7 @@
                         <th>Jabatan</th>
                         <th>Gaji</th>
                         <th>Potongan</th>
+                        <th>Lemburan</th>
                       </tr>
                     </thead>
                     <tbody id="show__data__gaji"></tbody>
@@ -50,12 +51,17 @@
             </div>
             <div class="form-group">
                 <label>Jumlah Gaji</label>
-                <input type="text" class="form-control" id="jumlah_gaji" name="jumlah_gaji" >
+                <input type="number" class="form-control" id="jumlah_gaji" name="jumlah_gaji" >
             </div>
 
             <div class="form-group">
-                <label>Potongan</label>
-                <input type="text" class="form-control" id="potongan" name="potongan">
+                <label>Potongan (Per Jam)</label>
+                <input type="number" class="form-control" id="potongan" name="potongan">
+            </div>
+
+            <div class="form-group">
+                <label>Lemburan (Per Jam) </label>
+                <input type="number" class="form-control" id="lemburan" name="lemburan">
             </div>
 
             <div class="form-group">
@@ -93,8 +99,13 @@
             </div>
 
             <div class="form-group">
-                <label>Potongan</label>
+                <label>Potongan (Per Jam) </label>
                 <input type="text" class="form-control" id="potongan_edit" name="potongan_edit">
+            </div>
+
+             <div class="form-group">
+                <label>Lemburan (Per Jam) </label>
+                <input type="text" class="form-control" id="lemburan_edit" name="lemburan_edit">
             </div>
 
             <div class="form-group">

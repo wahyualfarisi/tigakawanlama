@@ -15,7 +15,7 @@ var jabatanUI = (function() {
         form:['#form__add__jabatan','#form__hapus__jabatan','#form__edit__jabatan'],
         fieldTarget: '#kode_jabatan',
         fieldConfirm: '#confirm',
-        fieldEdit: ['#kode_jabatan_edit','#nama_jabatan_edit','#jumlah_gaji_edit','#potongan_edit']
+        fieldEdit: ['#kode_jabatan_edit','#nama_jabatan_edit','#jumlah_gaji_edit','#potongan_edit','#lemburan_edit']
     }
 
 
@@ -50,8 +50,9 @@ var jabatanUI = (function() {
                          html += '<td> '+item.nama_jabatan+' </td>';
                          html += '<td> '+formatRupiah(item.gaji)+' </td>';
                          html += '<td> '+formatRupiah(item.potongan)+' </td>';
+                         html += '<td> '+formatRupiah(item.lemburan)+' </td>';
                          html += '<td><button type="button" class="btn btn-primary btn-delete" data-id="'+item.kode_jabatan+'" > Delete </button></td>';
-                         html += '<td><button type="button" class="btn btn-primary btn-edit" data-id="'+item.kode_jabatan+'" data-nama="'+item.nama_jabatan+'" data-gaji="'+item.gaji+'" data-potongan="'+item.potongan+'" > Edit </button></td>';
+                         html += '<td><button type="button" class="btn btn-primary btn-edit" data-id="'+item.kode_jabatan+'" data-nama="'+item.nama_jabatan+'" data-gaji="'+item.gaji+'" data-potongan="'+item.potongan+'" data-lemburan="'+item.lemburan+'" > Edit </button></td>';
                     html += '</tr>';
                 })
             }
@@ -92,6 +93,10 @@ var jabatanController = (function(UI) {
                 potongan:
                 {
                     required: true
+                },
+                lemburan:
+                {
+                    required: true
                 }
             },
             messages: {
@@ -106,6 +111,10 @@ var jabatanController = (function(UI) {
                 potongan:
                 {
                     required: 'Jumlah Potongan Harus Diisi'
+                },
+                lemburan:
+                {
+                    required: 'Jumlah Lemburan harus diisi'
                 }
             },
             errorPlacement(error, element)
@@ -136,6 +145,7 @@ var jabatanController = (function(UI) {
             $(DOM.fieldEdit[1]).val($(this).data('nama'));
             $(DOM.fieldEdit[2]).val($(this).data('gaji'));
             $(DOM.fieldEdit[3]).val($(this).data('potongan'));
+            $(DOM.fieldEdit[4]).val($(this).data('lemburan'));
             ModalAction(DOM.modal[0].modalEdit, 'show')
         });
 

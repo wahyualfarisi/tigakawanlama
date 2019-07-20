@@ -135,7 +135,8 @@ class Absensi extends CI_Controller {
                             'scan_keluar' => $scan_keluar,
                             'terlambat'   => $terlambat,
                             'telat_perjam' => $perJam,
-                            'total_jam_kerja' => $total_jam_kerja
+                            'total_jam_kerja' => $total_jam_kerja,
+                            'lemburan_perjam' => getJam($scan_keluar, $jam_keluar)
                         );
                     }
             }
@@ -156,6 +157,7 @@ class Absensi extends CI_Controller {
         $id_absensi = $this->input->post('id_absensi');
         $potongan   = $this->input->post('potongan');
         $total_gaji = $this->input->post('total_gaji');
+        $lemburan   = $this->input->post('total_lembur');
 
 
         //array value
@@ -170,7 +172,8 @@ class Absensi extends CI_Controller {
             'id_penggajian' => rand(0, 23536),
             'id_absensi' => $id_absensi,
             'total_gaji' => $total_gaji,
-            'potongan'   => $potongan
+            'potongan'   => $potongan,
+            'total_lemburan' => $lemburan
         );
 
         $this->m_core->add_data('t_gaji_karyawan', $data_gaji_karyawan);

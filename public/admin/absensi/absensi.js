@@ -43,6 +43,7 @@ var createdAbsensiUI = (function() {
 
     return {
         getAbsensiCreated: function(obj){
+            console.log(obj)
             var html, no = 1, labelAbsensi, totalGaji, resultGaji;
 
             if(obj.length > 0 ){
@@ -54,7 +55,7 @@ var createdAbsensiUI = (function() {
                         labelAbsensi = '<a href="#/uploadabsensi?nik='+item.nik+'&&tgl_penggajian='+SEGMENT+'&&id_absensi='+item.id_absensi+' " class="btn btn-gradient-primary btn-fw"> Upload Absensi </a>';
                     }
                     
-                    totalGaji = parseInt(item.total_gaji) - parseInt(item.potongan) ;
+                    totalGaji = parseInt(item.total_gaji);
                     isNaN(totalGaji) ? resultGaji = '-' :  resultGaji =  formatRupiah(totalGaji.toString()) ;
 
                     
@@ -264,6 +265,7 @@ var createdAbsnsiController = (function(CreatedUI) {
             var idabsensi = $(this).data('idabsensi');
             $('#idTarget').val(idabsensi)
             ModalAction($(createdAbsensiDOM.modalDelete), 'show')
+
         })
 
         /**
@@ -281,6 +283,7 @@ var createdAbsnsiController = (function(CreatedUI) {
                    $.notify(parse.msg, 'success')
                    load_absensi_created()
                    load_progress_absensi()
+                   $(createdAbsensiDOM.sectionACC).css('display','none')
                }else{
                     $.notify(parse.msg, 'danger')
                }

@@ -22,7 +22,8 @@ class Gaji extends CI_Controller {
             $this->primary => $this->generateAutoKode(),
             'nama_jabatan' => $this->input->post('nama_jabatan'),
             'gaji'         => $this->input->post('jumlah_gaji'),
-            'potongan'     => $this->input->post('potongan')
+            'potongan'     => $this->input->post('potongan'),
+            'lemburan'     => $this->input->post('lemburan')
         );
 
         $insert = $this->m_core->add_data($this->table, $data);
@@ -57,7 +58,8 @@ class Gaji extends CI_Controller {
             $this->primary => $this->input->post('kode_jabatan_edit'),
             'nama_jabatan' => $this->input->post('nama_jabatan_edit'),
             'gaji'         => $this->input->post('jumlah_gaji_edit'),
-            'potongan'     => $this->input->post('potongan_edit')
+            'potongan'     => $this->input->post('potongan_edit'),
+            'lemburan'     => $this->input->post('lemburan_edit')
         );
         
         $update = $this->m_core->update_where($this->table, $data , $where);

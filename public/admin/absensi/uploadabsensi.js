@@ -11,6 +11,7 @@ var UploadabsensiDOM = {
     btnReupload: '#btn-reupload'
 }
 var perJamTelat = [];
+var perJamLembur = [];
 
 
 var UploadabsensiUI = (function() {
@@ -21,7 +22,9 @@ var UploadabsensiUI = (function() {
                 if(obj.length > 0)
                 {
                     obj.forEach(function(item) {
+                        console.log(item.lemburan_perjam)
                         item.telat_perjam !== 0 ? perJamTelat.push(item.telat_perjam) : false;
+                        item.lemburan_perjam !== 0 ? perJamLembur.push(item.lemburan_perjam) : false;
 
                         if(item.nik.toString() !== GLOBAL_NIK){
                             label = 'bg-gradient-danger';
@@ -62,11 +65,18 @@ var UploadabsensiUI = (function() {
                     var getDataGaji   = localStorage.getItem('datagaji');
                     var parseJson     = JSON.parse(getDataGaji);
                     var totalTelat    = perJamTelat.reduce((a,b) => a + b, 0);
+                    var totalLembur   = perJamLembur.reduce((a, b) => a + b, 0);
+
+                    var lemburan;
+                    lemburan = parseInt(parseJson[0].lemburan) * parseInt(totalLembur);
 
                     var totalPotongan = totalTelat * parseInt(parseJson[0].potongan) ;
                     $('#gaji').val(parseJson[0].gaji);
                     $('#potongan').val(totalPotongan);
-                    $('#total_gaji').val(parseInt(parseJson[0].gaji - parseInt(totalPotongan) )); 
+                    $('#total_gaji').val((parseInt(parseJson[0].gaji - parseInt(totalPotongan)) + lemburan  )); 
+                    $('#total_lembur').val(lemburan);
+                    console.log(parseJson[0].lemburan)
+                    console.log(totalLembur)
                 }
 
                 $(UploadabsensiDOM.preview).html(html);
@@ -152,7 +162,7 @@ var UploadabsensiController = (function(UIupload) {
                     var parse = JSON.parse(data);
                     if(parse.code === 200){
                         $.notify(parse.msg, 'success');
-                        location.hash = '#/importabsensi/'+SEGMENT;
+                        location.hash = '#/importabsensi/'+GLOBAL_TGL_PENGGAJIAN;
                     }
                 }
             })

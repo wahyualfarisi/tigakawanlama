@@ -21,7 +21,7 @@ var PenggajianUI = (function() {
     
     return {
         retrieveDataPenggajian: function(obj){
-            var html = '', bgGradient;
+            var html = '', bgGradient, locationbutton, cancelButton;
             if(obj.length > 0 ){
             
                 obj.forEach(function(item) {
@@ -34,11 +34,13 @@ var PenggajianUI = (function() {
                     if(item.status_penggajian === 'process'){
                         status     = 'Menunggu Upload absensi';
                         bgGradient = 'bg-gradient-info';
-                        locationbutton = '<a href="#/importabsensi/'+item.tgl_penggajian+' " class="btn btn-info" > Import Absensi </a>';
+                        locationbutton = '<a href="#/importabsensi/'+item.tgl_penggajian+' " class="btn btn-info btn-sm" > Import Absensi </a>';
+                        cancelButton = '<button class="btn btn-danger btn-sm btn__batal__penggajian"> Batal </button>';
                     }else{
                         status     = 'Menunggu Approved Owner';
                         bgGradient = 'bg-gradient-success';
                         locationbutton = '';
+                        cancelButton = '<button class="btn btn-danger btn-sm btn__batal__penggajian "> Batal </button>';
                     }
 
 
@@ -52,7 +54,16 @@ var PenggajianUI = (function() {
                             html += '<h3 class="mb-5">'+item.status_penggajian+'</h3>';
                             html += '<p> '+status+' </p>';
                             html += '<h6 class="card-text">';
-                            html += locationbutton;
+                            html += `<div class="row"> 
+                                        <div class="col-md-6">
+                                              ${locationbutton} 
+                                        </div>
+                                        <div class="col-md-6" >
+                                               ${cancelButton}
+                                        </div>
+                                        
+                                     </div>
+                            `;
                             html += '</h6>'
                         html += '</div>';
                     html += '</div>';
@@ -121,6 +132,7 @@ var PenggajianController = (function(UIPenggajian) {
                         cache: false,
                         success: function(data){
                             var parse = JSON.parse(data);
+                            
                             if(parse.code === 200){
                                 $.notify(parse.msg, 'success');
                                 load_data_penggajian();
@@ -142,6 +154,9 @@ var PenggajianController = (function(UIPenggajian) {
             load_data_penggajian($(this).val())
         });
 
+        $('#show-data-gaji').on('click', '.btn__batal__penggajian', function() {
+            alert('cliked')
+        })
         
 
     }
