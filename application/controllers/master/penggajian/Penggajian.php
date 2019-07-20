@@ -57,7 +57,7 @@ class Penggajian extends CI_Controller {
 
     function delete()
     {
-        $tanggal_penggajian = $this->input->post('tanggal_penggajian');
+        $tanggal_penggajian = $this->input->post('query');
         $where              = array('tgl_penggajian' => $tanggal_penggajian);
 
         $delete             = $this->m_core->delete_rows($this->table, $where);
@@ -68,6 +68,23 @@ class Penggajian extends CI_Controller {
             $res = array('msg' => 'Data Penggajian Gagal Di hapus', 'code' => 400);
             echo json_encode($res);
         }
+    }
+
+    function approval_gaji()
+    {
+        $data = $this->m_penggajian->approval_gaji();
+        echo json_encode($data->result() );
+    }
+
+    function detail_penggajian($tgl_penggajian)
+    {
+        $detail_penggajian = $this->m_penggajian->detail_penggajian($tgl_penggajian);
+        $data_penggajian   = $this->m_core->get_where('t_penggajian', array('tgl_penggajian' => $tgl_penggajian));
+        $output = json_encode(array(
+            'detail_penggajian' => $detail_penggajian->result(),
+            'data_penggajian'   => $data_penggajian->result()[0]
+        ));
+        echo $output;
     }
 
 

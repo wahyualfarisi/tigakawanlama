@@ -22,7 +22,7 @@
         <h4 class="font-weight-normal mb-3"> Menunggu Validasi Gaji
         <i class="mdi mdi-chart-line mdi-24px float-right"></i>
         </h4>
-        <h2 class="mb-5">1</h2>
+        <h2 class="mb-5" id="total_validasi">1</h2>
     </div>
     </div>
 </div>
@@ -54,4 +54,5 @@
 
 
 <script src="<?= base_url('public/example/chart.js') ?>"></script>
+<script defer src="<?= base_url('public/pimpinan/main_dashboard.js') ?>" ></script>
 

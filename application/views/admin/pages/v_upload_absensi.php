@@ -64,22 +64,22 @@
 
             <div id="section-calc-gaji" style="margin-top: 40px;" >
                 <div class="form-group">
-                    <label>Gaji</label>
+                    <label>Gaji Pokok</label>
                     <input type="text" name="gaji" id="gaji" class="form-control" readonly>
                 </div>
 
                 <div class="form-group">
-                    <label>Lemburan</label>
+                    <label>Total Lemburan </label>
                     <input type="text" name="total_lembur" id="total_lembur" class="form-control" readonly>
                 </div>
 
                 <div class="form-group">
-                    <label>Potongan</label>
+                    <label>Total Potongan</label>
                     <input type="text" name="potongan" id="potongan" class="form-control" readonly>
                 </div>
                
                 <div class="form-group">
-                    <label>Total Gaji</label>
+                    <label>Total Gaji Yang Diterima</label>
                     <input type="text" name="total_gaji" id="total_gaji" class="form-control" readonly >
                 </div>
             </div>

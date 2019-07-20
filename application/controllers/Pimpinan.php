@@ -18,4 +18,22 @@ class Pimpinan extends CI_Controller {
        $this->load->view('pimpinan/pages/dashboard');
    }
 
+   function approvalgaji()
+   {
+       $this->load->view('pimpinan/pages/approvalgaji');
+   }
+
+   function detailinformasigaji($tgl_penggajian)
+   {
+      $this->load->view('pimpinan/pages/detailinformasigaji');
+   }
+
+   function uploadabsensi($tgl_penggajian)
+   {
+       if($tgl_penggajian){
+          $this->load->view('pimpinan/pages/uploadabsensi');
+       }
+       
+   }
+
 }

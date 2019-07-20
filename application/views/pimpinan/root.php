@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?> ">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?> " />
+  <script>
+    var BASE_URL = '<?php base_url() ?>'
+  </script>
 </head>
 <body>
   <div class="container-scroller">
@@ -106,8 +109,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/slipgaji">Approval Gaji</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/absensi">Informasi Gaji</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/approvalgaji">Informasi Gaji</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" href="#/absensi">Informasi Gaji</a></li> -->
               </ul>
             </div>
           </li>
