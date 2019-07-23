@@ -76,6 +76,12 @@ class Penggajian extends CI_Controller {
         echo json_encode($data->result() );
     }
 
+    function informasi_gaji()
+    {
+        $data = $this->m_penggajian->informasi_gaji();
+        echo json_encode($data->result() );
+    }
+
     function detail_penggajian($tgl_penggajian)
     {
         $detail_penggajian = $this->m_penggajian->detail_penggajian($tgl_penggajian);
@@ -85,6 +91,56 @@ class Penggajian extends CI_Controller {
             'data_penggajian'   => $data_penggajian->result()[0]
         ));
         echo $output;
+    }
+
+    function approved_penggajian()
+    {
+        $where = array(
+            'tgl_penggajian' => $this->input->post('tgl_penggajian')
+        );
+        $data = array(
+            'status_penggajian' => 'approved'
+        );
+
+        $update = $this->m_core->update_where('t_penggajian', $data, $where);
+        if($update){
+            $res = array(
+                'msg' =>  'Data Gajian Berhasil Di Approved',
+                'code' => 200
+            );
+            echo json_encode($res);
+        }else{
+            $res = array(
+                'msg' => 'Terjadi Kesalahan',
+                'code' => 500
+            );
+            echo json_encode($res);
+        }
+    }
+
+    function reject_penggajian()
+    {
+        $where = array(
+            'tgl_penggajian' => $this->input->post('tgl_penggajian')
+        );
+        $data = array(
+            'status_penggajian' => 'process'
+        );
+
+        $update = $this->m_core->update_where('t_penggajian', $data, $where);
+        if($update){
+            $res = array(
+                'msg' =>  'Data Gajian Berhasil Di Reject',
+                'code' => 200
+            );
+            echo json_encode($res);
+        }else{
+            $res = array(
+                'msg' => 'Terjadi Kesalahan',
+                'code' => 500
+            );
+            echo json_encode($res);
+        }
     }
 
 

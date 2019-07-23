@@ -100,4 +100,4 @@
     var GLOBAL_NIK = '<?= $_GET['nik'] ?>';
     var GLOBAL_TGL_PENGGAJIAN = '<?= $_GET['tgl_penggajian'] ?>';
 </script>
-<script src="<?= base_url('public/admin/absensi/uploadabsensi.js') ?>" ></script>
+<script src="<?= base_url('public/pimpinan/importabsensi.js') ?>" ></script>

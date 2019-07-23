@@ -163,7 +163,7 @@ var UploadabsensiController = (function(UIupload) {
                     var parse = JSON.parse(data);
                     if(parse.code === 200){
                         $.notify(parse.msg, 'success');
-                        location.hash = '#/importabsensi/'+GLOBAL_TGL_PENGGAJIAN;
+                        location.hash = '#/uploadabsensi/'+GLOBAL_TGL_PENGGAJIAN;
                     }
                 }
             })

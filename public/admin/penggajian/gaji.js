@@ -29,18 +29,27 @@ var PenggajianUI = (function() {
                     var month = new Date(item.tgl_penggajian).getMonth();
                     var date = new Date(item.tgl_penggajian).getDate();
 
-                    cancelButton = `<button class="btn btn-danger btn-sm btn__batal__penggajian" data-id="${item.tgl_penggajian}"> Batal </button>`;
+                    if(item.status_penggajian === 'process' && item.status_penggajian === 'waiting' ){
+                        cancelButton = `<button class="btn btn-danger btn-sm btn__batal__penggajian" data-id="${item.tgl_penggajian}"> Batal </button>`;
+                    }else{
+                        cancelButton = ''
+                    }
+                    
 
                     if(item.status_penggajian === 'process'){
                         status     = 'Menunggu Upload absensi';
                         bgGradient = 'bg-gradient-info';
                         locationbutton = '<a href="#/importabsensi/'+item.tgl_penggajian+' " class="btn btn-info btn-sm" > Import Absensi </a>';
                         
-                    }else{
+                    }else if(item.status_penggajian === 'waiting') {
                         status     = 'Menunggu Approved Owner';
                         bgGradient = 'bg-gradient-success';
                         locationbutton = '';
                         
+                    }else{
+                        status     = 'Penggajian Berhasil Di Approved';
+                        bgGradient = 'bg-gradient-danger';
+                        locationbutton = '';
                     }
 
 

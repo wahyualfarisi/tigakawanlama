@@ -43,7 +43,6 @@ var createdAbsensiUI = (function() {
 
     return {
         getAbsensiCreated: function(obj){
-            console.log(obj)
             var html, no = 1, labelAbsensi, totalGaji, resultGaji;
 
             if(obj.length > 0 ){

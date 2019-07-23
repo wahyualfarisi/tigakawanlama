@@ -99,6 +99,7 @@ class Karyawan extends CI_Controller {
             $res = array('msg' => 'Gagal Mengupdate data karyawan', 'code' => 400);
             echo json_encode($res);
         }
+      
     }
 
     function delete()
@@ -125,6 +126,12 @@ class Karyawan extends CI_Controller {
         $data = $this->m_karyawan->fetch_data($query)->result();
         echo json_encode($data);
 
+    }
+
+    function get_where_karyawan($nik)
+    {
+        $data = $this->m_core->get_where($this->table, array($this->primary => $nik) );
+        echo json_encode($data->result() );
     }
 
 

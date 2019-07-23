@@ -135,6 +135,89 @@
       <div class="main-panel">
         <div class="content-wrapper" id="content"></div>
        
+
+        <div class="modal fade"  id="modalKaryawan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalKaryawan">Data Penerima Gaji</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div style="margin-top: 20px; margin-bottom: 20px;" >
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                        <th>NIK</th>
+                        <th>Nama Karyawan</th>
+                        <th>Jabatan</th>
+                        <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="show-karyawan" ></tbody>
+                  
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-pilih">Pilih</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade"  id="modalApprovedGaji" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalKaryawan">Konfirmasi Approved Gaji</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="content-modal">
+                  <form id="form-approved-gaji">
+                    <input type="hidden" name="tgl_penggajian" id="tgl_penggajian" class="">
+                    <button type="submit" class="btn btn-gradient-info btn-block">Konfirmasi</button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade"  id="modalRejectGaji" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalKaryawan">Konfirmasi Approved Gaji</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="content-modal">
+                  <form id="form-reject-gaji">
+                    <input type="hidden" name="tgl_penggajian" id="tgl_penggajian2" class="">
+                    <button type="submit" class="btn btn-gradient-info btn-block">Konfirmasi</button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights reserved.</span>
@@ -153,6 +236,10 @@
   <script src="<?= base_url('assets/js/jquery.js') ?>"></script>
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.base.js') ?> "></script>
   <script src="<?= base_url('assets/vendors/js/vendor.bundle.addons.js') ?> "></script>
+
+  <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/jquery.validate.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/notify.min.js') ?>" ></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->

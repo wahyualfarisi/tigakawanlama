@@ -92,6 +92,28 @@ class Absensi extends CI_Controller {
         }      
     }
 
+    function show_current_admin($tgl_penggajian)
+    {
+        
+        $where = array(
+            'tgl_penggajian' => $tgl_penggajian
+        );
+
+        $absensi = $this->m_core->get_where($this->table, $where);
+        if($absensi->num_rows() > 0){
+            foreach($absensi->result() as $rowabsensi)
+            {
+                $dataabsensi[] = $rowabsensi->nik;
+            }
+            $getData = $this->m_absensi->fetch_karyawan_only_admin($dataabsensi);
+            echo json_encode($getData->result() );
+        }else{
+            $getData = $this->m_karyawan->get_karyawan_only_admin();
+            echo json_encode($getData->result() );
+        }
+
+    }
+
     function upload_absensi()
     {
         if(isset($_FILES['file']['name']) ){
@@ -123,6 +145,8 @@ class Absensi extends CI_Controller {
                             $perJam        = 0;
                         }
 
+                       
+
                         $total_jam_kerja = selisih($scan_keluar, $scan_masuk);
 
                         $data[] = array(
@@ -136,7 +160,8 @@ class Absensi extends CI_Controller {
                             'terlambat'   => $terlambat,
                             'telat_perjam' => $perJam,
                             'total_jam_kerja' => $total_jam_kerja,
-                            'lemburan_perjam' => getJam($scan_keluar, $jam_keluar)
+                            'lemburan_perjam' => getJam($scan_keluar, $jam_keluar),
+                            'test' => selisih("16:00", "17:00")
                         );
                     }
             }

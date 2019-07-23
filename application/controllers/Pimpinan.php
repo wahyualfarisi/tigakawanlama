@@ -33,7 +33,18 @@ class Pimpinan extends CI_Controller {
        if($tgl_penggajian){
           $this->load->view('pimpinan/pages/uploadabsensi');
        }
-       
+   }
+
+   function absensi($id_absensi)
+   {
+       if($id_absensi){
+           $this->load->view('pimpinan/pages/v_detail_absensi');
+       }
+   }
+
+   function importabsensi()
+   {
+       $this->load->view('pimpinan/pages/v_import_absensi');
    }
 
 }

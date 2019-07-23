@@ -4,17 +4,21 @@
         </span>
        Import Absensi
  </h3>
+
+<div style="margin-top: 40px;" ></div>
+
+<a href="#/detailinformasigaji/<?= $this->uri->segment(3) ?> " class="btn btn-gradient-success">Halaman Acc</a>
+
 <div style="margin-top: 30px;" ></div>
 
 <div class="row animated fadeIn" >
     <div class="col-md-4 stretch-card grid-margin" id="labelWidgetAbsensi" >
         <div class="card bg-gradient-info  card-img-holder text-white">
             <div class="card-body">                             
-                <h4 class="font-weight-normal mb-3">25 Juni 2019
+                <h4 class="font-weight-normal mb-3"><?= $this->uri->segment(3) ?>
                 <i class="mdi mdi-bookmark mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-2">On Process</h2>
-                <h5>3 Absensi Berhasil Di import</h5>
             </div>
         </div>
     </div>
@@ -52,7 +56,7 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <div class="col-sm-9">
-                                    <input type="text" name="status" id="status" class="form-control" value="waiting" readonly />
+                                    <input type="text" name="status" id="status" class="form-control" value="process" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +81,6 @@
         <table class="table table-striped">
         <thead>
             <tr>
-                <th></th>
                 <th>No</th>
                 <th>Nik</th>
                 <th>Nama Lengkap</th>
@@ -102,3 +105,6 @@
 <script>
     SEGMENT = '<?= $this->uri->segment(3) ?>';
 </script>
+
+<script src="<?= base_url('public/myPlugin.js') ?>" ></script>
+<script src="<?= base_url('public/pimpinan/upload_absensi.js') ?>" ></script>

@@ -129,12 +129,6 @@
 </div>
 
 
-<div>
-    <div class="form-group">
-        <label style="font-weight: bold">Cari Data Gaji</label>
-        <input type="text" class="form-control" id="search_penggajian">
-    </div>
-</div>
 
 
 <div class="row">

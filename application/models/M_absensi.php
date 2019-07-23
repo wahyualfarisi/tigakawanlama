@@ -33,6 +33,13 @@ class M_absensi extends CI_Model {
         return $query;
     }
 
+    function fetch_karyawan_only_admin($arrString)
+    {
+        $arrString = implode(', ', $arrString);
+        $query    = $this->db->query("SELECT * FROM t_karyawan, t_jabatan WHERE t_karyawan.kode_jabatan = t_jabatan.kode_jabatan AND  t_karyawan.nik NOT IN ($arrString) AND t_jabatan.nama_jabatan = 'admin' ");
+        return $query;
+    }
+
     function fetch_absensi_karyawan($id_absensi)
     {
         $query = "SELECT

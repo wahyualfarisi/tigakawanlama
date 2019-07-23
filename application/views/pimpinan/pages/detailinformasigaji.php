@@ -42,21 +42,12 @@
 
 
 
-             <div class="col-lg-4">
-                <a href="#/uploadabsensi/<?= $this->uri->segment(3) ?>" class="btn btn-gradient-info btn-block" >Upload Gaji Admin</a>
+             <div class="col-lg-4 btn__upload__gaji__admin">
+                <a href="#/uploadabsensi/<?= $this->uri->segment(3) ?>" class="btn btn-gradient-info btn-block " >Upload Gaji Admin</a>
 
                 <div class="card" style="margin-top: 40px; margin-bottom: 40px;">
                     <div class="card-body">
-                        <div id="data__penggajian"></div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                    <button class="btn btn-info" >APPROVED</button>
-                            </div>
-                            <div class="col-md-6">
-                                    <button class="btn btn-danger">REJECT</button>
-                            </div>
-                        </div>
+                        <div id="data__penggajian"></div>   
                     </div>
                 </div>
              </div>
