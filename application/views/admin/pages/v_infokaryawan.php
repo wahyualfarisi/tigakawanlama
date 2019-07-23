@@ -52,7 +52,7 @@
                         <div class="col-sm-9">
                             <select class="form-control" name="jenis_kelamin">
                                 <option value="L">Laki - Laki</option>
-                                <option value="P">Female</option>
+                                <option value="P">Perempuan</option>
                             </select>
                         </div>
                     </div>

@@ -16,18 +16,18 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card bg-gradient-danger card-img-holder text-white">
             <div class="card-body">
-                <h4 class="font-weight-normal mb-3">Weekly Sales
+                <h4 class="font-weight-normal mb-3">Slip Gaji
                 <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                 </h4>
-                <h2 class="mb-5">$ 15,0000</h2>
-                <h6 class="card-text">Increased by 60%</h6>
+                <h2 class="mb-5" id="total__jumlah__slip">$ 15,0000</h2>
+                <h6 class="card-text">Data Slip Gaji </h6>
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="form-group">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -40,50 +40,18 @@
          <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Slip Gaji</h4>
-                <p class="card-description">
-                Add class <code>.table</code>
-                </p>
                 <table class="table">
                 <thead>
                     <tr>
-                    <th>Profile</th>
-                    <th>VatNo.</th>
-                    <th>Created</th>
-                    <th>Status</th>
+                    <th>ID Absensi</th>
+                    <th>Tanggal Penggajian</th>
+                    <th>NIK</th>
+                    <th>Nama Lengkap</th>
+                    <th>Total Gaji</th>
+                    <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    <td>Jacob</td>
-                    <td>53275531</td>
-                    <td>12 May 2017</td>
-                    <td><label class="badge badge-danger">Pending</label></td>
-                    </tr>
-                    <tr>
-                    <td>Messsy</td>
-                    <td>53275532</td>
-                    <td>15 May 2017</td>
-                    <td><label class="badge badge-warning">In progress</label></td>
-                    </tr>
-                    <tr>
-                    <td>John</td>
-                    <td>53275533</td>
-                    <td>14 May 2017</td>
-                    <td><label class="badge badge-info">Fixed</label></td>
-                    </tr>
-                    <tr>
-                    <td>Peter</td>
-                    <td>53275534</td>
-                    <td>16 May 2017</td>
-                    <td><label class="badge badge-success">Completed</label></td>
-                    </tr>
-                    <tr>
-                    <td>Dave</td>
-                    <td>53275535</td>
-                    <td>20 May 2017</td>
-                    <td><label class="badge badge-warning">In progress</label></td>
-                    </tr>
-                </tbody>
+                <tbody id="show__informasi__slip" ></tbody>
                 </table>
             </div>
         </div>
@@ -91,3 +59,5 @@
 
     </div>
 </div>
+<script defer src="<?= base_url('public/myPlugin.js') ?>"></script>
+<script defer src="<?= base_url('public/karyawan/slipgaji.js') ?> " ></script>

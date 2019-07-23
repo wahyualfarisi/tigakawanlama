@@ -43,6 +43,7 @@ class App extends CI_Controller {
                             $data_session = array(
                                 'nik'   => $user->nik,
                                 'email' => $user->email,
+                                'nama_lengkap' => $user->nama_depan .' '. $user->nama_belakang,
                                 'akses' => $akses
                             );
                             $this->session->set_userdata($data_session);

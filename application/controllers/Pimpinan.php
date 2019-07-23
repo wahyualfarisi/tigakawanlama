@@ -47,4 +47,9 @@ class Pimpinan extends CI_Controller {
        $this->load->view('pimpinan/pages/v_import_absensi');
    }
 
+   function laporan()
+   {
+       $this->load->view('pimpinan/pages/v_laporan');
+   }
+
 }

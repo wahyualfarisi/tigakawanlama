@@ -14,6 +14,10 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?> ">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?> " />
+  <script>
+    var BASE_URL = '<?= base_url() ?>';
+    var NIK = '<?= $this->session->userdata('nik') ?>';
+  </script>
 </head>
 <body>
   <div class="container-scroller">
@@ -210,7 +214,6 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="#/slipgaji">Slip Gaji</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/absensi">Absensi</a></li>
               </ul>
             </div>
           </li>
@@ -250,6 +253,7 @@
   <!-- Custom js for this page-->
   <script src="<?= base_url('assets/js/dashboard.js') ?> "></script>
   <!-- End custom js for this page-->
+  <script defer src="<?= base_url('assets/js/printArea.js') ?>" ></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

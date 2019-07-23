@@ -72,6 +72,7 @@ class Karyawan extends CI_Controller {
 
     function update()
     {
+
         $data = array(
             'email' => $this->input->post('email'),
             'password' => '12345',
@@ -89,7 +90,9 @@ class Karyawan extends CI_Controller {
             'kode_jabatan' => $this->input->post('kode_jabatan')
         );
 
+
         $where = array( $this->primary => $this->input->post('nik') );
+
 
         $update = $this->m_core->update_where($this->table, $data, $where);
         if($update){
@@ -133,6 +136,28 @@ class Karyawan extends CI_Controller {
         $data = $this->m_core->get_where($this->table, array($this->primary => $nik) );
         echo json_encode($data->result() );
     }
+
+    function fetch_slipi($nik)
+    {
+        $query = '';
+        if($this->input->post('query') ){
+            $query = $this->input->post('query');
+        }
+        $data = $this->m_karyawan->fetch_slip_gaji($nik, $query);
+
+        echo json_encode(array(
+            'data' => $data->result(),
+            'rows' => [$data->num_rows()]
+        ));
+    }
+
+    function print_slip($id_absensi)
+    {
+        $data = $this->m_karyawan->print_slip($id_absensi);
+        echo json_encode($data->result() );
+    }
+
+
 
 
 

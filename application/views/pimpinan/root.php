@@ -123,7 +123,7 @@
             </a>
             <div class="collapse" id="ui-karyawan">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/slipgaji">Gaji</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#/laporan">Lihat Laporan</a></li>
               </ul>
             </div>
           </li>
@@ -246,6 +246,7 @@
   <!-- inject:js -->
   <script src="<?= base_url('assets/js/off-canvas.js') ?> "></script>
   <script src="<?= base_url('assets/js/misc.js') ?> "></script>
+  <script defer src="<?= base_url('assets/js/printArea.js') ?>" ></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="<?= base_url('assets/js/dashboard.js') ?> "></script>

@@ -95,32 +95,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Penggajian</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            <a class="nav-link" href="#/penggajian">
+              <span class="menu-title">Hitung Gaji</span>
+              <i class="mdi mdi-home menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/penggajian">Hitung Gaji</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/informasigaji">Informasi Gaji</a></li>
-              </ul>
-            </div>
           </li>
-
-           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-karyawan" aria-expanded="false" aria-controls="ui-karyawan">
-              <span class="menu-title">Karyawan</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+          <li class="nav-item">
+            <a class="nav-link" href="#/informasigaji">
+              <span class="menu-title">Informasi Gaji</span>
+              <i class="mdi mdi-home menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-karyawan">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#/tambahkaryawan">Tambah Karyawan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/listkaryawan">List Karyawan</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#/infoabsensi">Informasi Absensi</a></li>
-              </ul>
-            </div>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="#/listkaryawan">
+              <span class="menu-title">Daftar Karyawan</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#/kelolauser">

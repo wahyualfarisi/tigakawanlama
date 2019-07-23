@@ -183,7 +183,15 @@
                 error.insertAfter(element)
             },
             submitHandler: function(form){
-                postResource(url.updateKaryawan, form, data => console.log( JSON.parse(data) ) );
+                postResource(url.updateKaryawan, form, data => {
+                    var parse = JSON.parse(data);
+                    if(parse.code === 200){
+                        $.notify('success', parse.msg)
+                        load_fetch_detail()
+                    }else{
+                        $.notify('info', parse.msg)
+                    }
+                } );
             }
            })
 

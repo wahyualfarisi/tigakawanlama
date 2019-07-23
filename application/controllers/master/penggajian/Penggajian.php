@@ -143,6 +143,14 @@ class Penggajian extends CI_Controller {
         }
     }
 
+    function laporan()
+    {
+        $dari_bulan = $this->input->post('dari_bulan');
+        $sampai_bulan = $this->input->post('sampai_bulan');
+        $data = $this->m_penggajian->laporan($dari_bulan,$sampai_bulan);
+        echo json_encode($data->result() );
+    }
+
 
 
 

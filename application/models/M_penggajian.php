@@ -61,10 +61,20 @@ class M_penggajian extends CI_Model {
         return $this->db->query($query);
     }
 
-    function calculate_data_penggajian()
-    {
-        
-    }
+   function laporan($bulan, $bulan2)
+   {
+       $query = "SELECT a.id_absensi, a.tanggal_import, a.status, a.tgl_penggajian,
+                        b.nik, b.email, CONCAT(b.nama_depan ,' ',b.nama_belakang) as nama_karyawan, b.jk,
+                        c.kode_jabatan, c.nama_jabatan, c.gaji, c.potongan, c.lemburan,
+                        d.id_penggajian, d.total_gaji, d.potongan as total_potongan, d.total_lemburan
+                    FROM t_absensi a LEFT JOIN t_karyawan b ON a.nik = b.nik
+                                    LEFT JOIN t_jabatan c ON b.kode_jabatan = c.kode_jabatan
+                                    LEFT JOIN t_gaji_karyawan d ON a.id_absensi = d.id_absensi
+                                    
+                                    WHERE MONTH(a.tgl_penggajian) BETWEEN '$bulan' AND '$bulan2'
+       ";
+       return $this->db->query($query);
+   }
 
 
 }

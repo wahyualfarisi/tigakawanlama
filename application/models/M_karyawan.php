@@ -34,5 +34,39 @@ class M_karyawan extends CI_Model{
         return $query;
     }
 
+    function fetch_slip_gaji($nik, $query)
+    {
+        $query = "SELECT a.id_absensi , a.tanggal_import , a.status,
+                         b.tgl_penggajian, b.status_penggajian,
+                         c.id_penggajian, c.total_gaji, c.potongan, c.total_lemburan, 
+                         d.nik, d.email, CONCAT(d.nama_depan, ' ', d.nama_belakang) as nama_lengkap, d.no_rekening, d.nama_bank, d.atas_nama,
+                         e.kode_jabatan, e.nama_jabatan, e.gaji, e.potongan, e.lemburan
+                  FROM t_absensi a LEFT JOIN t_penggajian b ON a.tgl_penggajian = b.tgl_penggajian
+                                   LEFT JOIN t_gaji_karyawan c ON a.id_absensi = c.id_absensi 
+                                   LEFT JOIN t_karyawan d ON a.nik = d.nik
+                                   LEFT JOIN t_jabatan e ON d.kode_jabatan = e.kode_jabatan
+                  WHERE a.nik = '$nik' AND a.tgl_penggajian LIKE '%$query%'
+                  GROUP BY a.id_absensi
+        ";
+        return $this->db->query($query);
+    }
+
+    function print_slip($id_absensi)
+    {
+        $query = "SELECT a.id_absensi , a.tanggal_import , a.status,
+        b.tgl_penggajian, b.status_penggajian,
+        c.id_penggajian, c.total_gaji, c.potongan as total_potongan, c.total_lemburan, 
+        d.nik, d.email, CONCAT(d.nama_depan, ' ', d.nama_belakang) as nama_lengkap, d.jk,  d.no_rekening, d.nama_bank, d.atas_nama, d.tgl_lahir, 
+        e.kode_jabatan, e.nama_jabatan, e.gaji, e.potongan, e.lemburan
+        FROM t_absensi a LEFT JOIN t_penggajian b ON a.tgl_penggajian = b.tgl_penggajian
+                        LEFT JOIN t_gaji_karyawan c ON a.id_absensi = c.id_absensi 
+                        LEFT JOIN t_karyawan d ON a.nik = d.nik
+                        LEFT JOIN t_jabatan e ON d.kode_jabatan = e.kode_jabatan
+        WHERE a.id_absensi = '$id_absensi'
+        GROUP BY a.id_absensi
+        ";
+        return $this->db->query($query);
+    }
+
 
 }
