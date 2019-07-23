@@ -21,7 +21,7 @@ class M_absensi extends CI_Model {
     {
         $query = $this->db->query(
             "SELECT a.tgl_penggajian, a.status_penggajian,  CONCAT(b.nama_depan, ' ', b.nama_belakang) as nama_admin 
-             FROM t_penggajian a JOIN t_admini b ON a.kode_admin = b.kode_admin WHERE a.tgl_penggajian = '$tgl_penggajian' "
+             FROM t_penggajian a JOIN t_admin b ON a.kode_admin = b.kode_admin WHERE a.tgl_penggajian = '$tgl_penggajian' "
         );
         return $query;
     }
