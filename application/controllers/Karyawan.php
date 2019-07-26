@@ -33,4 +33,9 @@ class Karyawan extends CI_Controller {
        $this->load->view('karyawan/pages/v_detailslip');
    }
 
+   function detailabsensi($id_absensi)
+   {
+       $this->load->view('karyawan/pages/v_absensi_detail');
+   }
+
 }

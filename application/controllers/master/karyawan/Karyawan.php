@@ -107,7 +107,7 @@ class Karyawan extends CI_Controller {
 
     function delete()
     {
-        $nik = $this->input->post('nik');
+        $nik = $this->input->post('idTarget');
         $where = array($this->primary => $nik);
         $delete = $this->m_core->delete_rows($this->table, $where);
         if($delete){

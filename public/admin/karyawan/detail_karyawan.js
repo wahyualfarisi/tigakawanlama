@@ -5,7 +5,8 @@
         const urlString = {
             fetch_detail_karyawan: BASE_URL+'master/karyawan/Karyawan/get_where_karyawan/'+PARAMS,
             fetch_jabatan: BASE_URL+'master/karyawan/Gaji/show_jabatan',
-            updateKaryawan: BASE_URL+'master/karyawan/Karyawan/update'
+            updateKaryawan: BASE_URL+'master/karyawan/Karyawan/update',
+            delete: BASE_URL+'master/karyawan/Karyawan/delete'
         }
 
         return {
@@ -33,7 +34,8 @@
                 kode_jabatan: '#kode_jabatan'
             },
             btn: {
-                editKaryawan: '#edit__data__karyawan'
+                editKaryawan: '#edit__data__karyawan',
+                hapusKaryawan: '.btn__hapus__karyawan'
             },
             form: {
                 edit: '#form-edit-karyawan'
@@ -193,6 +195,29 @@
                     }
                 } );
             }
+           })
+
+           $(dom.btn.hapusKaryawan).click(function() {
+               var nik = $(this).data('nik')
+               $('#idTarget').val(nik)
+               $('#modalDelete').modal('show')
+           })
+
+           $('#form-delete').on('submit', function(e) {
+               e.preventDefault()
+               var valueConfirm = $('#confirm').val();
+               if(valueConfirm !== 'confirm') return $.notify('Konfirmasi Salah', 'info');
+
+               postResource(url.delete, this, data => {
+                   var parse = JSON.parse(data)
+                   if(parse.code === 200){
+                       $.notify(parse.msg, 'success')
+                       location.hash = '#/listkaryawan'
+                       $('#modalDelete').modal('hide')
+                   }else{
+                       $.notify(parse.msg, 'error')
+                   }
+               } )
            })
 
         }

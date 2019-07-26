@@ -21,5 +21,5 @@
 
 <div class="row animated fadeIn" style="margin-top: 30px;" id="show-karyawan"></div>
 <script src="<?= base_url('dist/admin/karyawan/karyawan.min.js') ?>" ></script>
-<!-- <script src="<?= base_url('public/admin/karyawan/list_karyawan.js') ?>" ></script> -->
+
 

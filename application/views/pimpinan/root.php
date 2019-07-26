@@ -44,20 +44,9 @@
                 <span class="availability-status online"></span>             
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black"> <?= $this->session->userdata('nama_lengkap') ?> </p>
               </div>
             </a>
-            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-cached mr-2 text-success"></i>
-                Activity Log
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-logout mr-2 text-primary"></i>
-                Signout
-              </a>
-            </div>
           </li>
           <li class="nav-item d-none d-lg-block full-screen-link">
             <a class="nav-link">
@@ -65,10 +54,8 @@
             </a>
           </li>
 
-          <li class="nav-item nav-logout d-none d-lg-block">
-            <a class="nav-link" href="<?= base_url('App/logout') ?>">
-              <i class="mdi mdi-power"></i>
-            </a>
+           <li class="nav-item nav-logout d-none d-lg-block">
+              <button class="btn btn-danger btn__logout "> <i class="mdi mdi-power"></i></button>            
           </li>
           
         </ul>
@@ -215,6 +202,27 @@
           </div>
         </div>
 
+        <div class="modal fade"  id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalKaryawan">Apakah anda yakin ingin keluar ? </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="content-modal">
+                <a href="<?= base_url('App/logout') ?>" class="btn btn-danger btn-block"> 
+                  Ya, Saya Ingin Keluar
+                </a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
 
@@ -275,6 +283,10 @@
           }else{
             location.hash = '#/dashboard';
           }
+
+           $('.btn__logout').click(function() {
+              $('#modalLogout').modal('show')
+            })
 
         });
         </script>

@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller {
             $this->output->cache(n);
         }
         $this->load->model('m_core');
+        $this->load->model('m_dashboard');
     }
 
     public function count_qty()
@@ -25,6 +26,36 @@ class Dashboard extends CI_Controller {
             'count_waiting' => $penggajian_waiting,
             'count_approved' => $penggajian_approved
         )); 
+        echo $output;
+    }
+
+    public function grafik_penggajian()
+    {
+        $data = $this->m_dashboard->grafik_penggajian();
+        echo json_encode($data->result() );
+    }
+
+    public function dashboard_owner()
+    {
+        $menunggu_validasi = $this->m_dashboard->get_gaji_waiting();
+        $total_pengeluaran = $this->m_dashboard->total_all_pengeluaran();
+
+        $output = json_encode(array(
+            'menunggu_validasi' => $menunggu_validasi->num_rows(),
+            'total_pengeluaran' => $total_pengeluaran->result()
+        ));
+        echo $output;
+    }
+
+    public function dashboard_karyawan($nik)
+    {
+        $gaji_karyawan = $this->m_dashboard->gaji_karyawan($nik);
+        $absensi_karyawan = $this->m_dashboard->absensi_karyawan($nik);
+
+        $output = json_encode(array(
+            'gaji_karyawan' => $gaji_karyawan->result(),
+            'absensi_karyawan' => $absensi_karyawan->result()
+        ));
         echo $output;
     }
 
