@@ -23,7 +23,7 @@ const UserUI = (function() {
             html += '<td>'+item.nama_depan+' '+item.nama_belakang+' </td>';
             html += '<td>'+item.akses+' </td>';
             html += '<td>'+item.login_terakhir+'</td>';
-            html += '<td><button class="btn btn-gradient-danger btn__delete" data-id="'+item.kode_admin+'" > Delete </button> </td>';
+            html += '<td><button class="btn btn-gradient-danger btn__delete" data-id="'+item.kode_admin+'" > Hapus </button> </td>';
             html += '<td><button data-id="'+item.kode_admin+'" data-nama_depan="'+item.nama_depan+'" data-nama_belakang="'+item.nama_belakang+'" data-password="'+item.password+'" data-akses="'+item.akses+'" data-email="'+item.email+'" class="btn btn-gradient-primary btn__edit" > Edit </button> </td>';
             html += '</tr>';   
         });

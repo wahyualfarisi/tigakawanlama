@@ -45,135 +45,19 @@
                 <span class="availability-status online"></span>             
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black"><?= $this->session->userdata('nama_lengkap') ?> </p>
               </div>
             </a>
-            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-cached mr-2 text-success"></i>
-                Activity Log
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-logout mr-2 text-primary"></i>
-                Signout
-              </a>
-            </div>
           </li>
           <li class="nav-item d-none d-lg-block full-screen-link">
             <a class="nav-link">
               <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
             </a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <i class="mdi mdi-email-outline"></i>
-              <span class="count-symbol bg-warning"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-              <h6 class="p-3 mb-0">Messages</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
-                  <p class="text-gray mb-0">
-                    1 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
-                  <p class="text-gray mb-0">
-                    15 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                    
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
-                  <p class="text-gray mb-0">
-                    18 Minutes ago
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <h6 class="p-3 mb-0 text-center">4 new messages</h6>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="mdi mdi-bell-outline"></i>
-              <span class="count-symbol bg-danger"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <h6 class="p-3 mb-0">Notifications</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-success">
-                    <i class="mdi mdi-calendar"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
-                  <p class="text-gray ellipsis mb-0">
-                    Just a reminder that you have an event today
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-warning">
-                    <i class="mdi mdi-settings"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
-                  <p class="text-gray ellipsis mb-0">
-                    Update dashboard
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-info">
-                    <i class="mdi mdi-link-variant"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
-                  <p class="text-gray ellipsis mb-0">
-                    New admin wow!
-                  </p>
-                </div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <h6 class="p-3 mb-0 text-center">See all notifications</h6>
-            </div>
-          </li>
+          
+          
           <li class="nav-item nav-logout d-none d-lg-block">
-            <a class="nav-link" href="<?= base_url().'App/logout' ?> ">
-              <i class="mdi mdi-power"></i>
-            </a>
-          </li>
-          <li class="nav-item nav-settings d-none d-lg-block">
-            <a class="nav-link" href="#">
-              <i class="mdi mdi-format-line-spacing"></i>
-            </a>
+              <button class="btn btn-danger btn__logout "> <i class="mdi mdi-power"></i></button>            
           </li>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -193,15 +77,15 @@
                 <span class="login-status online"></span> <!--change to offline or busy as needed-->              
               </div>
               <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2">David Grey. H</span>
-                <span class="text-secondary text-small">Project Manager</span>
+                <span class="font-weight-bold mb-2"><?= $this->session->userdata('nama_lengkap') ?> </span>
+                <span class="text-secondary text-small">Karyawan</span>
               </div>
               <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#/dashboard">
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Halaman Utama</span>
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
@@ -224,6 +108,28 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper" id="content"></div>
+
+
+        <div class="modal fade"  id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalKaryawan">Apakah anda yakin ingin keluar ? </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="content-modal">
+                <a href="<?= base_url('App/logout') ?>" class="btn btn-danger btn-block"> 
+                  Ya, Saya Ingin Keluar
+                </a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+              </div>
+            </div>
+          </div>
+        </div>
        
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -280,6 +186,10 @@
           }
 
         });
+
+          $('.btn__logout').click(function() {
+              $('#modalLogout').modal('show')
+            })
         </script>
   
 </body>

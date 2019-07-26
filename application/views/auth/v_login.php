@@ -52,7 +52,7 @@
                       <option value=""> Pilih Akses </option>
                       <option value="karyawan">Karyawan</option>
                       <option value="admin">Admin</option>
-                      <option value="owner">Owner</option>
+                      <option value="owner">Pimpinan</option>
                   </select>
                 </div>
 

@@ -51,7 +51,7 @@ var jabatanUI = (function() {
                          html += '<td> '+formatRupiah(item.gaji)+' </td>';
                          html += '<td> '+formatRupiah(item.potongan)+' </td>';
                          html += '<td> '+formatRupiah(item.lemburan)+' </td>';
-                         html += '<td><button type="button" class="btn btn-primary btn-delete" data-id="'+item.kode_jabatan+'" > Delete </button></td>';
+                         html += '<td><button type="button" class="btn btn-primary btn-delete" data-id="'+item.kode_jabatan+'" > Hapus </button></td>';
                          html += '<td><button type="button" class="btn btn-primary btn-edit" data-id="'+item.kode_jabatan+'" data-nama="'+item.nama_jabatan+'" data-gaji="'+item.gaji+'" data-potongan="'+item.potongan+'" data-lemburan="'+item.lemburan+'" > Edit </button></td>';
                     html += '</tr>';
                 })
