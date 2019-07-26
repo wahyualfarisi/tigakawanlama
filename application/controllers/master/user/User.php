@@ -106,7 +106,7 @@ class User extends CI_Controller {
         $nourut = (int) substr($kode, 3, 3);
         $nourut++;
 
-        $previx = 'adm';
+        $previx = 'ADM';
         $newID  = $previx .sprintf('%03s', $nourut);
         return $newID;
     }

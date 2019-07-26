@@ -52,4 +52,9 @@ class Pimpinan extends CI_Controller {
        $this->load->view('pimpinan/pages/v_laporan');
    }
 
+   function infokaryawan()
+   {
+       $this->load->view('pimpinan/pages/v_karyawan');
+   }
+
 }

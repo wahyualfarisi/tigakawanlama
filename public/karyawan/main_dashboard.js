@@ -18,6 +18,7 @@
         }
 
         const renderAbsensi = data => {
+            console.log(data);
             let html = '';
             if(data.length > 0){
                 data.forEach(item => {

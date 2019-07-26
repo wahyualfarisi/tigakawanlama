@@ -14,6 +14,7 @@
                         <th>Scan Masuk</th>
                         <th>Scan Keluar</th>
                         <th>Terlambat</th>
+                        <th>Lemburan </th>
                       </tr>
                     </thead>
                     <tbody id="show__detail__absensi"></tbody>

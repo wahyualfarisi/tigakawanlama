@@ -194,7 +194,7 @@ class Absensi extends CI_Controller {
         
         //insert gaji karyawan
         $data_gaji_karyawan = array(
-            'id_penggajian' => rand(0, 23536),
+            'id_penggajian' => $this->generateCodeGajiKaryawan(),
             'id_absensi' => $id_absensi,
             'total_gaji' => $total_gaji,
             'potongan'   => $potongan,
@@ -288,7 +288,8 @@ class Absensi extends CI_Controller {
                 'scan_keluar' => $item->scan_keluar,
                 'terlambat'   => $terlambat,
                 'telat_perjam' => $perJam,
-                'total_jam_kerja' => selisih($item->scan_keluar, $item->scan_masuk)
+                'total_jam_kerja' => selisih($item->scan_keluar, $item->scan_masuk),
+                'lemburan_perjam' => getJam($item->scan_keluar, $item->jam_keluar) === 0 ? '-' : getJam($item->scan_keluar, $item->jam_keluar).' Jam' 
             );
         }
         echo json_encode($absensi);
@@ -298,10 +299,22 @@ class Absensi extends CI_Controller {
     {
         $data = $this->m_core->autoNumber($this->primary, $this->table);
         $kode = $data->result()[0]->maxKode;
-        $nourut = (int) substr($kode, 3 , 3);
+        $nourut = (int) substr($kode, 4 , 4);
         $nourut++;
 
-        $char = 'ab-';
+        $char = 'abs_';
+        $newID = $char . sprintf('%03s', $nourut);
+        return $newID;
+    }
+
+    function generateCodeGajiKaryawan()
+    {
+        $data = $this->m_core->autoNumber('id_penggajian', 't_gaji_karyawan');
+        $kode = $data->result()[0]->maxKode;
+        $nourut = (int) substr($kode, 4 , 4);
+        $nourut++;
+
+        $char = 'pgj_';
         $newID = $char . sprintf('%03s', $nourut);
         return $newID;
     }

@@ -7,7 +7,6 @@ class Karyawan extends CI_Controller {
         parent::__construct();
     }
 
-
    function index()
    {
        $this->load->view('karyawan/root');
@@ -36,6 +35,11 @@ class Karyawan extends CI_Controller {
    function detailabsensi($id_absensi)
    {
        $this->load->view('karyawan/pages/v_absensi_detail');
+   }
+
+   function informasiabsensi()
+   {
+       $this->load->view('karyawan/pages/v_informasiabsensi');
    }
 
 }

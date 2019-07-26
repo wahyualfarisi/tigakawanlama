@@ -159,7 +159,7 @@
             </div>
 
         
-            <button type="submit" class="btn btn-gradient-primary btn-fw">UBAH</button>
+            <button type="submit" class="btn btn-gradient-primary btn-fw">EDIT</button>
             <button type="button" class="btn btn-gradient-danger btn-fw btn__hapus__karyawan" data-nik="<?= $this->uri->segment(3) ?>" >HAPUS</button>
             <a href="#/listkaryawan" class="btn btn-gradient-warning" > Kembali </a>
 

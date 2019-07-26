@@ -177,6 +177,10 @@ var jabatanController = (function(UI) {
                 fetch_jabatan()
             })
         })
+
+        $('#nama_jabatan').keyup(function() {
+            $(this).val($(this).val().toUpperCase())
+        })
     }
 
     var fetch_jabatan = function(){

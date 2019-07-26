@@ -35,11 +35,13 @@
 
 
         const renderLaporan = data => {
+            let storeTOTAL = []
             let html = "", no = 1;
             console.log(data);
             if(data.length > 0){
                 $(domString.html.showbuttonlaporan).css('display','block')
                 data.forEach(item => {
+                    storeTOTAL.push(parseInt(item.total_gaji) )
                     html += `
                         <tr>
                             <td> ${no++} </td>
@@ -54,7 +56,23 @@
                         </tr>
                     `;
                 })
+                const total = storeTOTAL.reduce((a,b) => a + b, 0)
+
+                html += `
+                        <tr class="bg-gradient-info">
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td style="font-size: 20px;">TOTAL </td>
+                            <td style="font-size: 20px;"> ${formatRupiah(total.toString()) } </td>
+                        </tr>
+                `;
             }
+            
             $(domString.html.showLaporan).html(html)
         }
 

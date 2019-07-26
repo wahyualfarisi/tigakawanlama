@@ -47,7 +47,7 @@
         <form id="form__add__user">
 
             <div class="form-group">
-                <label>Kode Admin</label>
+                <label>Email Admin</label>
                 <input type="text" class="form-control" id="email" name="email">
             </div>
 

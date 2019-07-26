@@ -54,7 +54,7 @@
                                     "rgba(153, 102, 255, 1)",
                                     "rgba(255, 159, 64, 1)"
                                 ],
-                                borderWidth: 12,
+                                borderWidth: 2,
                                 fill: false
                             }
                         ]
@@ -103,10 +103,9 @@
 		return {
 			getDOM: () => domString,
 			retrieveFetchDashboard: data => {
+                console.log(data)
 				$("#total_validasi").html(data.menunggu_validasi);
-				$("#total__pengeluaran").html(
-					formatRupiah(data.total_pengeluaran[0].total_pengeluaran)
-				);
+				$("#total__pengeluaran").html( formatRupiah(data.total_pengeluaran[0].total_pengeluaran) );
             },
             retirieveGrafik: data => renderGrafik(data)
 		};

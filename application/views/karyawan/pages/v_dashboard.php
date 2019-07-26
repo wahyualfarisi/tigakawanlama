@@ -67,7 +67,7 @@
 </div>
 
 <script>
-    var NIK = $this->session->userdata('nik');
+    var NIK = '<?= $this->session->userdata('nik'); ?>';
 </script>
 
 <script src="<?= base_url('public/myPlugin.js') ?>" ></script>

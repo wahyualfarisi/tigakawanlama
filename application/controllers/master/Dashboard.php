@@ -5,10 +5,7 @@ class Dashboard extends CI_Controller {
 
     function __construct(){
         parent::__construct();
-        if($this->session->userdata('login') != 1){
-            redirect(base_url() );
-            $this->output->cache(n);
-        }
+       
         $this->load->model('m_core');
         $this->load->model('m_dashboard');
     }

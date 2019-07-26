@@ -10,6 +10,7 @@ var detailAbsenUI = (() => {
     const renderAbsensi = data => {
         var html = '', no = 1; 
         data.forEach(item => {
+            console.log(item)
             storeData.total_telat_perjam.push(item.telat_perjam);
             html += '<tr>';
                 html += '<td>'+no+++'</td>';
@@ -19,6 +20,7 @@ var detailAbsenUI = (() => {
                 html += '<td>'+item.scan_masuk+'</td>';
                 html += '<td>'+item.scan_keluar+'</td>';
                 html += '<td>'+item.terlambat+'</td>';
+                html += '<td>'+item.lemburan_perjam+'</td>';
             html += '</tr>';
         })
         $(domString.show).html(html)

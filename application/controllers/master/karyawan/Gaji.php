@@ -97,7 +97,7 @@ class Gaji extends CI_Controller {
         $nourut = (int) substr($kode, 3, 3);
         $nourut++;
 
-        $char  = 'kd_';
+        $char  = 'jb_';
         $newID = $char . sprintf('%03s', $nourut);
         return $newID;
     }

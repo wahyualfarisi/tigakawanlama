@@ -92,7 +92,7 @@
                 nik:
                 {
                     required: true,
-                    minlength: 10
+                    minlength: 7
                 },
                 nama_depan:
                 {
@@ -141,7 +141,7 @@
                 nik:
                 {
                     required: 'Nik Tidak Boleh Kosong',
-                    minlength: 'Minimal Nik 10 Karakter '
+                    minlength: 'Minimal Nik 7 Karakter '
                 },
                 nama_depan:
                 {
