@@ -12,7 +12,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">NIK</label>
                         <div class="col-sm-9">
-                             <input type="text" name="nik" id="nik" maxlength="10" class="form-control onlynumber" />
+                             <input type="text" name="nik" id="nik" maxlength="7" class="form-control onlynumber" />
                         </div>
                     </div>
                     </div>

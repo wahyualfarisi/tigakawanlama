@@ -45,7 +45,7 @@ var setupFormKaryawanController = (function(Utils) {
                     nik:
                     {
                         required: true,
-                        minlength: 10
+                        minlength: 7
                     },
                     nama_depan:
                     {
