@@ -94,7 +94,7 @@ var setupFormKaryawanController = (function(Utils) {
                     nik:
                     {
                         required: 'Nik Tidak Boleh Kosong',
-                        minlength: 'Minimal Nik 10 Karakter '
+                        minlength: 'Minimal Nik 7 Karakter '
                     },
                     nama_depan:
                     {
