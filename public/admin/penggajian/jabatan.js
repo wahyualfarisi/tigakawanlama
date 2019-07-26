@@ -67,10 +67,10 @@ var jabatanController = (function(UI) {
     var DOM = UI.getDOM();
 
     var urlAPI = {
-        fetch_jabatan: BASE_URL+'master/Karyawan/Gaji/fetch_json',
-        add: BASE_URL+'master/Karyawan/Gaji/add',
-        delete: BASE_URL+'master/Karyawan/Gaji/delete',
-        update: BASE_URL+'master/Karyawan/Gaji/update'
+        fetch_jabatan: BASE_URL+'master/karyawan/Gaji/fetch_json',
+        add: BASE_URL+'master/karyawan/Gaji/add',
+        delete: BASE_URL+'master/karyawan/Gaji/delete',
+        update: BASE_URL+'master/karyawan/Gaji/update'
     }
 
     var setupEventListener = function(){
