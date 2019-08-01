@@ -57,4 +57,9 @@ class Pimpinan extends CI_Controller {
        $this->load->view('pimpinan/pages/v_karyawan');
    }
 
+   function detailkaryawan($nik)
+    {
+        $this->load->view('pimpinan/pages/v_detail_karyawan');
+    }
+
 }

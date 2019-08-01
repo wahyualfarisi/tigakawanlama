@@ -1,5 +1,3 @@
-console.log(GLOBAL_NIK)
-
 var UploadabsensiDOM = {
     formUploaded: '#form-upload-absensi',
     preview: '#preview-absensi-karyawan',
@@ -10,6 +8,8 @@ var UploadabsensiDOM = {
     btnSaveAbsensi: '#btn-save-absensi',
     btnReupload: '#btn-reupload'
 }
+
+
 var perJamTelat = [];
 var perJamLembur = [];
 
@@ -22,7 +22,6 @@ var UploadabsensiUI = (function() {
                 if(obj.length > 0)
                 {
                     obj.forEach(function(item) {
-                        console.log(item.lemburan_perjam)
                         item.telat_perjam !== 0 ? perJamTelat.push(item.telat_perjam) : false;
                         item.lemburan_perjam !== 0 ? perJamLembur.push(item.lemburan_perjam) : false;
 
@@ -46,6 +45,8 @@ var UploadabsensiUI = (function() {
                 }
 
                 if(obj[0].nik.toString() !== GLOBAL_NIK.toString() ){
+                    perJamLembur = []
+                    perJamTelat = []
                     $(UploadabsensiDOM.labelMsg).css('display','block');
                     var html2 = '';
                     html2 += '<div style="margin-top: 20px;" >';
@@ -63,21 +64,28 @@ var UploadabsensiUI = (function() {
                     $(UploadabsensiDOM.sectionCalcGaji).css('display','block');
 
                     //load perhitungan gaji
-                    var getDataGaji   = localStorage.getItem('datagaji');
-                    var parseJson     = JSON.parse(getDataGaji);
-                    var totalTelat    = perJamTelat.reduce((a,b) => a + b, 0);
-                    var totalLembur   = perJamLembur.reduce((a, b) => a + b, 0);
+                    var getDataGaji, parseJson, biayaLemburan, biayaPotongan, totalTelat, totalLembur, lemburan, totalPotongan
 
-                    var lemburan;
-                    lemburan = parseInt(parseJson[0].lemburan) * parseInt(totalLembur);
+                     getDataGaji   = localStorage.getItem('datagaji');
+                     parseJson     = JSON.parse(getDataGaji);
+                     biayaLemburan = parseInt(parseJson[0].lemburan)
+                     biayaPotongan = parseInt(parseJson[0].potongan)
 
-                    var totalPotongan = totalTelat * parseInt(parseJson[0].potongan) ;
+
+                    totalTelat    = perJamTelat.reduce((a,b) => a + b, 0);
+                    totalLembur   = perJamLembur.reduce((a, b) => a + b, 0);
+                    
+                    lemburan = biayaLemburan * parseInt(totalLembur);
+
+                    totalPotongan = totalTelat * biayaPotongan ;
+
+
+                    $('#total_lembur_perjam').val(` ${totalLembur} x ${biayaLemburan} `)
+                    $('#total_telat_perjam').val(` ${totalTelat} x ${biayaPotongan} `)
                     $('#gaji').val(parseJson[0].gaji);
                     $('#potongan').val(totalPotongan);
                     $('#total_gaji').val((parseInt(parseJson[0].gaji - parseInt(totalPotongan)) + lemburan  )); 
                     $('#total_lembur').val(lemburan);
-                    console.log(parseJson[0].lemburan)
-                    console.log(totalLembur)
                 }
 
                 $(UploadabsensiDOM.preview).html(html);
@@ -170,6 +178,7 @@ var UploadabsensiController = (function(UIupload) {
         });
 
         $(document).on('click', UploadabsensiDOM.btnReupload, function() {
+            $('#form-save-karyawan')[0].reset()
             $(UploadabsensiDOM.preview).html("");
             $(UploadabsensiDOM.sectionUpload).css('display','block').addClass("animaed fadeInLeft");
             $(UploadabsensiDOM.labelMsg).css('display','none');
