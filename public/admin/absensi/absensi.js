@@ -115,10 +115,11 @@ var createdAbsensiUI = (function() {
             if(data.length > 0){
                 data.forEach(function(item) {
                     html += '<tr>';
+                      html += '<td> <input type="checkbox" name="nik[]" value="'+item.nik+'"  /> </td>';
                       html += '<td>'+item.nik+'</td>';
                       html += '<td>'+item.nama_depan+'</td>';
                       html += '<td>'+item.nama_jabatan+'</td>';
-                      html += '<td><button class="btn btn-gradient-primary btn-pilih-karyawan" data-nik="'+item.nik+'" > Pilih </button></td>';
+                      html += '<td></td>';
                     html += '</tr>';
                 });
             }else{
@@ -132,7 +133,8 @@ var createdAbsensiUI = (function() {
 
 var createdAbsnsiController = (function(CreatedUI) {
     var URI = {
-        deleteAbsensi: BASE_URL+'master/absensi/Absensi/deleteAbsensi'
+        deleteAbsensi: BASE_URL+'master/absensi/Absensi/deleteAbsensi',
+        importBanyak: BASE_URL+'master/absensi/Absensi/importbanyajKaryawan'
     }
     var createdAbsensiListener = function(){
 
@@ -289,6 +291,60 @@ var createdAbsnsiController = (function(CreatedUI) {
             })
         });
 
+        $('#btn-pilih').on('click', function() {
+            var nik = [], html = '';
+            $.each($("input[name='nik[]']:checked"), function() {
+                nik.push($(this).val() )
+            } )
+            if(nik.length > 0){
+                ModalAction(createdAbsensiDOM.modalKaryawan, 'hide')
+
+                //loping value
+                nik.forEach(item => {
+                    html += `
+                        <input type="hidden" name="nik[]" value="${item}"  />
+                    `;
+                })
+                html += `
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" value="process" name="status" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" value="${SEGMENT}" name="tgl_penggajian" />
+                    </div>
+
+                `;
+                html += `<button class="btn btn-info btn-block" > TAMBAHKAN </button>`;
+                $('#form-add-karyawan').html(html)
+
+                ModalAction('#modalAddKaryawan', 'show')
+            }else{
+                alert('silahkan ceklis karyawan ');
+            }
+        })
+
+        $('#check_all').on('click', function() {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        })
+
+        $('.btn__batal').on('click', function() {
+            ModalAction('#modalAddKaryawan', 'hide')
+            ModalAction(createdAbsensiDOM.modalKaryawan, 'show')
+        })
+
+        $('#form-add-karyawan').on('submit', function(e) {
+            e.preventDefault();
+            postData(URI.importBanyak, this, function(data) {
+                var parse = JSON.parse(data);
+                if(parse.status){
+                    ModalAction('#modalAddKaryawan','hide')
+                    load_absensi_created()
+                    load_progress_absensi();
+                    load_widget_absensi();
+                    fetch_absensi_karyawan()
+                }
+            })
+        })
 
 
 

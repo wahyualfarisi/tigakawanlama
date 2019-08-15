@@ -37,6 +37,43 @@
             </p>
         </div>
 
+
+
+           <div id="section-calc-gaji" style="margin-top: 40px;" >
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Total Lembur Perjam</label>
+                                <input type="text" id="total_lembur_perjam" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Telat Perjam</label>
+                                <input type="text"  id="total_telat_perjam" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Gaji  </label>
+                                <input type="text" id="gaji" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Total Lemburan </label>
+                                <input type="text" name="total_lembur" id="total_lembur" class="form-control" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Total Potongan</label>
+                                <input type="text" name="potongan" id="potongan" class="form-control" readonly>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label>Total Gaji Yang Diterima</label>
+                                <input type="text" name="total_gaji" id="total_gaji" class="form-control" readonly >
+                            </div>
+                        </div>
+                   </div>  
+            </div>
+
        
        
 
@@ -63,43 +100,7 @@
                 <tbody id="preview-absensi-karyawan"></tbody>
             </table>
 
-            <div id="section-calc-gaji" style="margin-top: 40px;" >
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Total Lembur Perjam</label>
-                                <input type="text" id="total_lembur_perjam" class="form-control" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Total Telat Perjam</label>
-                                <input type="text"  id="total_telat_perjam" class="form-control" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Gaji  </label>
-                                <input type="text" id="gaji" class="form-control" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Total Lemburan </label>
-                            <input type="text" name="total_lembur" id="total_lembur" class="form-control" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Total Potongan</label>
-                            <input type="text" name="potongan" id="potongan" class="form-control" readonly>
-                        </div>
-                    
-                        <div class="form-group">
-                            <label>Total Gaji Yang Diterima</label>
-                            <input type="text" name="total_gaji" id="total_gaji" class="form-control" readonly >
-                        </div>
-                    </div>
-                </div>
-               
-
-                
-            </div>
+         
 
             <div id="section-form-simpan-absensi" style="margin-top: 40px;" >
                 <button type="submit" class="btn btn-primary" id="btn-save-absensi">SIMPAN</button>

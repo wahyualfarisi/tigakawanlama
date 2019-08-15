@@ -68,9 +68,35 @@ class Absensi extends CI_Controller {
             $res = array('msg' => 'Gagal Menambahkan', 'code' => 400);
             echo json_encode($res);
         }
-        
-    
     }
+
+    function importbanyajKaryawan()
+    {
+        $count = count($this->input->post('nik')) ? count($this->input->post('nik')) : 0;
+        for($i = 0; $i<$count; $i++)
+        {
+            $data = array(
+                'id_absensi' => 'abs-'.rand(0,300),
+                'nik' => $this->input->post('nik')[$i],
+                'tanggal_import' => date('Y-m-d'),
+                'status' => $this->input->post('status'),
+                'tgl_penggajian' => $this->input->post('tgl_penggajian')
+            );
+            $insert = $this->m_core->add_data('t_absensi', $data);
+        }
+        if($insert){
+            echo json_encode(array(
+                'res' => 'berhasil menambahkan penggajian',
+                'status' => true
+            ));
+        }else{
+            echo json_encode(array(
+                'res' => 'gagal menambahkan penggajian',
+                'status' => false
+            ));
+        }
+    }
+
 
     function show_current_karyawan($tgl_penggajian)
     {

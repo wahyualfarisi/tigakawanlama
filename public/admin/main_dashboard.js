@@ -1,3 +1,4 @@
+
 (function() {
 
     const dashboardURL = (function() {
@@ -30,6 +31,7 @@
         }
 
         const renderGrafik = data => {
+            
             if(data.length > 0){
                 data.forEach(item => {
                     TanggalPenggajian.push(formatDate(item.tgl_penggajian))
@@ -79,7 +81,7 @@
                     
                       };
                     
-                    if ($("#barChart").length) {
+                    // if ($("#barChart").length) {
                         var barChartCanvas = $("#barChart").get(0).getContext("2d");
                         // This will get the first returned node in the jQuery collection.
                         var barChart = new Chart(barChartCanvas, {
@@ -87,7 +89,9 @@
                           data: data,
                           options: options
                         });
-                      }
+                        
+
+                    //   }
 
 
                 })
