@@ -5,7 +5,7 @@
     Informasi Gaji
 </h3>
 
-<div class="col-lg-6 grid-margin stretch-card" style="margin-top: 30px;">
+<!-- <div class="col-lg-6 grid-margin stretch-card" style="margin-top: 30px;">
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered" style="margin-top: 40px;">
@@ -20,7 +20,7 @@
             </div>
             </div>
          </div>
-</div>
+</div> -->
 
 <div class="col-lg-12 grid-margin stretch-card" style="margin-top: 30px;">
         <div class="card">

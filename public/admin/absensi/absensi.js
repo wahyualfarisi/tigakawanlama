@@ -314,7 +314,7 @@ var createdAbsnsiController = (function(CreatedUI) {
                     </div>
 
                 `;
-                html += `<button class="btn btn-info btn-block" > TAMBAHKAN </button>`;
+                html += `<button class="btn btn-info btn-block btn__add__karyawan" > TAMBAHKAN </button>`;
                 $('#form-add-karyawan').html(html)
 
                 ModalAction('#modalAddKaryawan', 'show')
@@ -334,14 +334,35 @@ var createdAbsnsiController = (function(CreatedUI) {
 
         $('#form-add-karyawan').on('submit', function(e) {
             e.preventDefault();
-            postData(URI.importBanyak, this, function(data) {
-                var parse = JSON.parse(data);
+            // postData(URI.importBanyak, this, function(data) {
+            //     var parse = JSON.parse(data);
+            //     if(parse.status){
+            //         ModalAction('#modalAddKaryawan','hide')
+            //         load_absensi_created()
+            //         load_progress_absensi();
+            //         load_widget_absensi();
+            //         fetch_absensi_karyawan()
+            //     }
+            // })
+            $.ajax({
+                url: URI.importBanyak,
+                method: 'post',
+                data: $(this).serialize(),
+                beforeSend: function(){
+                    $('.btn__add__karyawan').attr('disabled', true).html('loading');
+                },
+                success: function(data){
+                    var parse = JSON.parse(data);
                 if(parse.status){
                     ModalAction('#modalAddKaryawan','hide')
                     load_absensi_created()
                     load_progress_absensi();
                     load_widget_absensi();
                     fetch_absensi_karyawan()
+                }
+                },
+                complete: function(){
+                    $('.btn__add__karyawan').attr('disabled', false).html('TAMBAHKAN');
                 }
             })
         })

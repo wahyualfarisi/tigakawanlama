@@ -40,6 +40,7 @@ var PenggajianUI = (function() {
                         status     = 'Menunggu Upload absensi';
                         bgGradient = 'bg-gradient-info';
                         locationbutton = '<a href="#/importabsensi/'+item.tgl_penggajian+' " class="btn btn-info btn-sm" > Import Absensi </a>';
+                        locationbutton += '<div style="margin-top: 30px;" > <button data-tgl="'+item.tgl_penggajian+'" class="btn btn-danger btn__hapus__penggajian" > Hapus </button> </div>';
                         
                     }else if(item.status_penggajian === 'waiting') {
                         status     = 'Menunggu Approved Owner';
@@ -175,22 +176,38 @@ var PenggajianController = (function(UIPenggajian) {
            } );
          
         })
-        
+
+        $(PenggajianDom.labelShowDataGaji).on('click', '.btn__hapus__penggajian', function() {
+          let html = '';
+          var tgl = $(this).data('tgl');
+          html += `
+            <form id="form-delete">
+                <input type="hidden" name="query" value="${tgl}" class="tgl_penggajian" />
+                <button class="btn btn-danger btn-block"> Hapus </button>
+            </form>
+          `;
+          $('#content-modal').html(html)
+          $('#modalNotif').modal('show')  
+        })
+
+        $('#modalNotif').on('submit', '#form-delete', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: `${BASE_URL}master/penggajian/Penggajian/delete`,
+                method: 'post',
+                data: {query: $('.tgl_penggajian').val()},
+                success: function(data){
+                    var parse = JSON.parse(data);
+                    if(parse.code === 200){
+                        load_data_penggajian()
+                        $('#modalNotif').modal('hide')
+                    }
+                }
+            })
+        })
 
     }
 
-
-    // var load_data_penggajian = function(query){
-    //     $.ajax({
-    //         url: BASE_URL+'master/penggajian/Penggajian/fetch_data',
-    //         method: 'post',
-    //         data: {query: query },
-    //         dataType: 'json',
-    //         success: function(data){
-    //             UIPenggajian.retrieveDataPenggajian(data)
-    //         }
-    //     })
-    // }
 
     const load_data_penggajian = (query) => getResource(BASE_URL+'master/penggajian/Penggajian/fetch_data', query, data => UIPenggajian.retrieveDataPenggajian(data) );
 

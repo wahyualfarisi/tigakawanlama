@@ -68,6 +68,7 @@ class Penggajian extends CI_Controller {
             $res = array('msg' => 'Data Penggajian Gagal Di hapus', 'code' => 400);
             echo json_encode($res);
         }
+        
     }
 
     function approval_gaji()
