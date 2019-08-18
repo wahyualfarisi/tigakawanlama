@@ -77,9 +77,13 @@
        
        
 
-        <h4 class="card-title" style="margin-top: 80px;">Preview Absensi</h4>
+        
         <div id="messages"></div>
         <form id="form-save-karyawan">
+            <div id="section-form-simpan-absensi" style="margin-top: 40px;" >
+                <button type="submit" class="btn btn-primary" id="btn-save-absensi">SIMPAN</button>
+            </div>
+            <h4 class="card-title" style="margin-top: 80px;">Preview Absensi</h4>
             <table class="table table-bordered">
                 <input type="hidden" name="tgl_penggajian" value="<?= $_GET['tgl_penggajian'] ?>" >
                 <input type="hidden" name="id_absensi" value="<?= $_GET['id_absensi'] ?>" >
@@ -102,9 +106,7 @@
 
          
 
-            <div id="section-form-simpan-absensi" style="margin-top: 40px;" >
-                <button type="submit" class="btn btn-primary" id="btn-save-absensi">SIMPAN</button>
-            </div>
+            
         </form>
        
 

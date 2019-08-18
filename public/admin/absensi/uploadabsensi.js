@@ -161,11 +161,10 @@ var UploadabsensiController = (function(UIupload) {
             $.ajax({
                 url: BASE_URL+'master/absensi/Absensi/simpanabsensi',
                 method: 'post',
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                cache: false,
-                async: false,
+                data: $(this).serialize(),
+                beforeSend: function(){
+                    $('#btn-save-absensi').attr('disabled', true).html('loading ... ')
+                },
                 success: function(data){
                     console.log(data);
                     var parse = JSON.parse(data);
@@ -173,6 +172,9 @@ var UploadabsensiController = (function(UIupload) {
                         $.notify(parse.msg, 'success');
                         location.hash = '#/importabsensi/'+GLOBAL_TGL_PENGGAJIAN;
                     }
+                },
+                complete: function(){
+                    $('#btn-save-absensi').attr('disabled', false).html('DONE')
                 }
             })
         });

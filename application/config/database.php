@@ -2,9 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$active_group = 'dev';
+$active_group = 'production';
 $query_builder = TRUE;
-
 
 $db['production'] = array(
 	'dsn'	=> '',
