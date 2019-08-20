@@ -325,7 +325,7 @@
 
 
 
-          <button type="submit" class="btn btn-info" > SIMPAN  </button>
+          <button type="submit" class="btn btn-info" id="btn__simpan__absensi" > SIMPAN  </button>
         </form>
       
       </div>

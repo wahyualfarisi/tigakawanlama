@@ -130,6 +130,8 @@ class Absensi2 extends CI_Controller {
         //data absensi 
         $id_absensi = [];
         $countnik = count($nik) ? count($nik) : 0 ;
+       
+
         for($i = 0; $i<$countnik; $i++)
         {
             array_push($id_absensi, $this->generateCodeMatic());
@@ -138,33 +140,60 @@ class Absensi2 extends CI_Controller {
                 'id_absensi' => $this->generateCodeMatic(),
                 'nik' => $this->input->post('nik')[$i],
                 'tanggal_import' => date('Y-m-d'),
-                'status' => 'process',
+                'status' => 'success',
                 'tgl_penggajian' => $tgl_penggajian
             );
+
             $this->m_core->add_data('t_absensi', $data_absensi);
         }
 
-        // echo print_r($data_absensi);
+       
 
         //data gaji karyawan
   
-            for($v = 0; $v<$countnik; $v++)
-            {
-                $data_penggajian = array(
-                    'id_penggajian' => $this->generateCodeGajiKaryawan(),
-                    'id_absensi' => $id_absensi[$v],
-                    'total_gaji' => $total_gaji[$v],
-                    'potongan' => $total_telat[$v],
-                    'total_lemburan' => $total_lembur[$v]
-                );
-                $this->m_core->add_data('t_gaji_karyawan', $data_penggajian);
-            }
-        
+        for($v = 0; $v<$countnik; $v++)
+        {
+            $data_penggajian = array(
+                'id_penggajian' => $this->generateCodeGajiKaryawan(),
+                'id_absensi' => $id_absensi[$v],
+                'total_gaji' => $total_gaji[$v],
+                'potongan' => $total_telat[$v],
+                'total_lemburan' => $total_lembur[$v]
+            );
+            $this->m_core->add_data('t_gaji_karyawan', $data_penggajian);
+        }
 
+        // data absensi 
+        $countabsensi = count($nik_absensi) ? count($nik_absensi) : 0 ;
+        for($b = 0; $b<$countabsensi; $b++)
+        {
+            $data_absen = array(
+                'id_absensi' => $tgl_penggajian.'/'.$nik_absensi[$b],
+                'tgl_absen' => $tgl_absen[$b],
+                'jam_masuk' => $jam_masuk[$b],
+                'jam_keluar' => $jam_keluar[$b],
+                'scan_keluar' => $scan_keluar[$b],
+                'scan_masuk' => $scan_masuk[$b]
+            );
+           $insert =  $this->m_core->add_data('t_detail_absensi', $data_absen);
+        }
+       
 
+    
+        if($insert){
+            echo json_encode(array(
+                'status' => 200 , 
+                'msg' => 'berhasil mengimport data'
+            ));
+        }else{
+            echo json_encode(array(
+                'status' => 400,
+                'msg' => 'gagal mengimport data'
+            ));
+        }
 
+       
 
-        // echo print_r($data_penggajian);
     }
 
     function generateCodeMatic()

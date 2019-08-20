@@ -49,7 +49,7 @@ var detailAbsenController = ( (UI) => {
     const DOM = UI.getDOM();
 
     const url = {
-        fetch: BASE_URL+'master/absensi/Absensi/fetch_absensi_karyawan/'+SEGMENT,
+        fetch: BASE_URL+'master/absensi/Absensi/fetch_absensi_karyawan?id='+SEGMENT,
     }
 
     var eventListener = function(){
@@ -58,7 +58,10 @@ var detailAbsenController = ( (UI) => {
 
 
     const load_absen_detail = () => {
-        getData(url.fetch, data => UI.retrieveAbsensi(data));
+        getData(url.fetch, data => {
+            UI.retrieveAbsensi(data)
+    
+        });
     }
 
 
@@ -94,7 +97,7 @@ var detailAbsenController = ( (UI) => {
         init: () => {
             eventListener()
             load_absen_detail()
-            console.log('initialize app ..', DOM)
+            console.log('initialize app ..', SEGMENT)
         }
     }
 })(detailAbsenUI)

@@ -295,9 +295,10 @@ class Absensi extends CI_Controller {
         }
     }
 
-    function fetch_absensi_karyawan($id)
+    function fetch_absensi_karyawan()
     {
-        $data = $this->m_absensi->fetch_absensi_karyawan($id);
+        // $data = $this->m_absensi->fetch_absensi_karyawan($_GET['id']);
+        $data = $this->m_core->get_where('t_detail_absensi', array('id_absensi' => $_GET['id']));
         foreach($data->result() as $item)
         {
             $check_telat       = terlambat($item->jam_masuk, $item->scan_masuk);
@@ -321,6 +322,10 @@ class Absensi extends CI_Controller {
             );
         }
         echo json_encode($absensi);
+
+   
+       
+
     }
 
     function generateCodeMatic()
