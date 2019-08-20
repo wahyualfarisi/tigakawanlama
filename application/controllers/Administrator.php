@@ -52,7 +52,7 @@ class Administrator extends CI_Controller {
 
     function importabsensi($tgl_penggajian)
     {
-        $this->load->view('admin/pages/v_import_absensi');
+        $this->load->view('admin/pages/v_import_absensi2');
     }
 
     function absensi($id_absensi)

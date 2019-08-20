@@ -37,7 +37,7 @@
             </p>
         </div>
 
-
+        <form id="form-save-karyawan">
 
            <div id="section-calc-gaji" style="margin-top: 40px;" >
                 <div class="row">
@@ -79,7 +79,7 @@
 
         
         <div id="messages"></div>
-        <form id="form-save-karyawan">
+        
             <div id="section-form-simpan-absensi" style="margin-top: 40px;" >
                 <button type="submit" class="btn btn-primary" id="btn-save-absensi">SIMPAN</button>
             </div>

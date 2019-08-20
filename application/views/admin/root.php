@@ -270,6 +270,72 @@
   </div>
 </div>
 
+<div class="modal fade"  id="modalUploadAbsensi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalKaryawan">Upload Absensi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form id="form-add-absensi" enctype="multipart/form-data">
+           <div class="form-group">
+              <label>Pilih file absensi</label>
+              <input type="file" name="file" class="form-control" accept=".xls, .xlsx" >
+           </div>
+           <button type="submit" class="btn btn-gradient-info btn-block " >UPLOAD</button>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn__batal">Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade"  id="modalPreviewUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalKaryawan"> Preview Gaji </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-gajian">
+          <table class="table">
+            <thead>
+              <tr>
+                  <th>NIK</th>
+                  <th>Total Lemburan</th>
+                  <th>Total Potongan</th>
+                  <th>Total Gaji</th>
+                </tr>
+            </thead>
+            <tbody id="preview_list"></tbody>
+           </table>
+
+          
+            <div id="preview_list_absen"></div>
+
+
+
+
+
+          <button type="submit" class="btn btn-info" > SIMPAN  </button>
+        </form>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn__batal">Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

@@ -226,6 +226,7 @@ class Absensi extends CI_Controller {
             'potongan'   => $potongan,
             'total_lemburan' => $lemburan
         );
+        
 
         $this->m_core->add_data('t_gaji_karyawan', $data_gaji_karyawan);
 
@@ -240,6 +241,7 @@ class Absensi extends CI_Controller {
                 'scan_keluar' => $scan_keluar[$i]
             );
         }
+        
         $where = array(
             'id_absensi' => $id_absensi
         );
