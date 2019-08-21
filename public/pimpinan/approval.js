@@ -37,7 +37,7 @@
                             <td>${item.status_penggajian} </td>
                             <td>${item.nama_admin}</td>
                             <td>${item.jumlah_absensi} </td>
-                            <td> ${formatRupiah(item.total_pengeluaran_gaji) } </td>
+                            <td> ${item.total_pengeluaran_gaji} </td>
                             <td> 
                                 <a href="#/detailinformasigaji/${item.tgl_penggajian}" class="btn btn-info" > Detail Informasi </a>
                             </td>

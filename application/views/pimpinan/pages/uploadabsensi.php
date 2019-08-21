@@ -33,12 +33,12 @@
                         </p>
 
                         <div class="form-group">
-                            <label>Karyawan</label>
+                            <label>File Absensi</label>
                             <input type="file" name="img[]" class="file-upload-default">
                             <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" id="nik_karyawan" name="nik_karyawan" readonly placeholder="Pilih Karyawan">
+                            <input type="text" class="form-control file-upload-info" id="nik_karyawan" name="nik_karyawan" readonly placeholder="File Absensi">
                             <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" id="btn-pilih-karyawan" type="button">Pilih Karyawan</button>
+                                <button class="file-upload-browse btn btn-primary" id="btn-pilih-karyawan" type="button">Pilih File Absensi</button>
                             </span>
                             </div>
                         </div>

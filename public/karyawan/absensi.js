@@ -32,7 +32,7 @@
                                 <td> ${item.nik} </td>
                                 <td> ${item.nama_lengkap} </td>
                                 <td> ${formatRupiah(item.total_gaji)} </td>
-                                <td> <a href="#/detailabsensi/${item.id_absensi}" class="btn btn-info" > Lihat Absensi </a> </td>
+                                <td> <a href="#/detailabsensi?dataabsensi=${item.tgl_penggajian}/${item.nik}" class="btn btn-info" > Lihat Absensi </a> </td>
                             </tr>
                     `;
                 })

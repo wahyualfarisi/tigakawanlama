@@ -23,6 +23,6 @@
     </div>
 </div>
 <script>
-    var SEGMENT = '<?= $this->uri->segment(3)?>';
+    var SEGMENT = '<?= $_GET['dataabsensi'] ?> ';
 </script>
 <script src="<?= base_url('public/admin/absensi/detailabsensi.js')?>"></script>

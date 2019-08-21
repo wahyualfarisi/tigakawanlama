@@ -154,8 +154,9 @@
                 postResource(url.approvedGaji, this, data => {
                     var parse = JSON.parse(data);
                     if(parse.code === 200){
-                        $.notify('success', parse.msg)
+                        $.notify(parse.msg, 'success' )
                         location.hash = '#/approvalgaji'
+                        ModalAction(dom.modal.modalApprovedGaji, 'hide')
                     }else{
                         $.notify('danger', parse.msg)
                         location.hash = '#/approvalgaji'

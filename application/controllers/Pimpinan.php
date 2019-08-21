@@ -35,11 +35,11 @@ class Pimpinan extends CI_Controller {
        }
    }
 
-   function absensi($id_absensi)
+   function absensi()
    {
-       if($id_absensi){
-           $this->load->view('pimpinan/pages/v_detail_absensi');
-       }
+      
+       $this->load->view('pimpinan/pages/v_detail_absensi');
+       
    }
 
    function importabsensi()

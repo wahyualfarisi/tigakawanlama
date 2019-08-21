@@ -22,14 +22,15 @@
             let html = '';
             if(data.length > 0){
                 data.forEach(item => {
-                    const {id_absensi, nik, tanggal_import} = item;
+                    console.log(item)
+                    const {id_absensi, nik, tanggal_import, tgl_penggajian} = item;
                     html += `
                     <tr>
                         <td> ${id_absensi} </td>
                         <td> ${nik} </td>
                         <td> ${tanggal_import} </td>
                         <td> 
-                            <a href="#/detailabsensi/${id_absensi}" class="btn btn-info" > Lihat Absensi </a>
+                            <a href="#/detailabsensi?dataabsensi=${tgl_penggajian}/${nik}" class="btn btn-info" > Lihat Absensi </a>
                         </td>
                     </tr>
                     
