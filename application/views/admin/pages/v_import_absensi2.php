@@ -71,13 +71,18 @@
     <div class="form-group">
         <h5>Kirim ke owner</h5>
         <button class="btn btn-primary" id="btn-send-to-owner" >Kirim</button>
-    </div>
+    </div>    
 </div>
+
+
 
 <div class="col-lg-12 grid-margin stretch-card animated fadeInLeft" style="margin-top:20px;">
     <div class="card">
     <div class="card-body">
         <h4 class="card-title">Data Penerima Gaji</h4>
+        <div id="sectionUploadUlang">
+            <button class="btn btn-danger" data-pgj="<?= $this->uri->segment(3) ?>" id="btn-upload-ulang" >Upload Ulang</button>
+        </div>
         <p class="card-description">
         </p>
 

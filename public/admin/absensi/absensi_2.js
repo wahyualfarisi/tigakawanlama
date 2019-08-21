@@ -31,6 +31,7 @@
             var html, no = 1, labelAbsensi, totalGaji, resultGaji;
 
             if(obj.length > 0 ){
+                $('#sectionUploadUlang').css('display','block')
                 obj.forEach(function(item) {
                     if(item.status === 'success'){
                         labelAbsensi = `<a href="#/absensi?dataabsensi=${SEGMENT}/${item.nik} " class="btn btn-gradient-success btn-fw btn-sm"> Lihat Absensi </a>`;
@@ -44,7 +45,7 @@
 
                     
                     html += '<tr>';
-                        html += '<td><button data-idabsensi="'+item.id_absensi+'" class="btn-delete-absensi"> <i class="mdi mdi-delete-forever"> </i> </button> </td>';
+                        html += '<td></td>';
                         html += '<td>'+no+++' </td>';
                         html += '<td>'+item.nik+'</td>'
                         html += '<td>'+item.nama_lengkap+'</td>';
@@ -53,8 +54,12 @@
                         html += '<td>'+item.status+' </td>';
                         html += '<td>'+labelAbsensi+' </td>';
                     html += '</tr>';
+
+                    
                 })
+                
             }else{
+                $('#sectionUploadUlang').css('display','none')
                 html += '<tr>';
                      html += '<td colspan="7" class="text-center"> <img src="'+BASE_URL+'assets/img/no_data.svg'+'" width="400px" /> <br> Tidak Ada Data </td>';
                 html += '</tr>';
@@ -76,6 +81,8 @@
         const url = URL.getURL()
         
         const eventListener = function(){
+
+           
 
             $(dom.btn.uploadAbsensi).on('click', function() {
                 $('#modalUploadAbsensi').modal('show')
@@ -224,6 +231,37 @@
                          }
                     }
                 })
+             })
+
+             $('#btn-upload-ulang').on('click', function() {
+                var tgl_penggajian = $(this).data('pgj');
+                let html = '';
+
+                html += `
+                    <form id="form-upload-ulang">
+                        <input type="hidden" name="tgl_penggajian" value="${tgl_penggajian}" />
+                        <button type="submit" class="btn btn-primary btn-block"> KONFIRMASI </button>
+                    </form>
+                `;
+
+                $('#content-modal').html(html)
+                $('#modalNotif').modal('show')
+             })
+
+             $('#modalNotif').on('submit', '#form-upload-ulang', function(e) {
+                 e.preventDefault()
+                 $.ajax({
+                     url: `${BASE_URL}master/absensi/Absensi2/deleteabsensi`,
+                     method: 'post',
+                     dataType: 'JSON',
+                     data: $(this).serialize(),
+                     success: function(data){
+                         if(data.status === 200){
+                             load_absensi_created()
+                             $('#modalNotif').modal('hide')
+                         }
+                     }
+                 })
              })
 
         }

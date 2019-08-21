@@ -330,7 +330,7 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn__batal">Batal</button>
+        
       </div>
     </div>
   </div>

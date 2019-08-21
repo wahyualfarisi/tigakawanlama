@@ -173,7 +173,8 @@ class Absensi2 extends CI_Controller {
                 'jam_masuk' => $jam_masuk[$b],
                 'jam_keluar' => $jam_keluar[$b],
                 'scan_keluar' => $scan_keluar[$b],
-                'scan_masuk' => $scan_masuk[$b]
+                'scan_masuk' => $scan_masuk[$b],
+                'tgl_penggajian' => $tgl_penggajian
             );
            $insert =  $this->m_core->add_data('t_detail_absensi', $data_absen);
         }
@@ -191,9 +192,25 @@ class Absensi2 extends CI_Controller {
                 'msg' => 'gagal mengimport data'
             ));
         }
+    }
 
-       
+    function deleteabsensi()
+    {
+        $tgl_penggajian = $this->input->post('tgl_penggajian');
 
+        $delete = $this->m_core->delete_rows('t_detail_absensi', array('tgl_penggajian' => $tgl_penggajian) );
+        if($delete){
+            $delete_absensi = $this->m_core->delete_rows('t_absensi', array('tgl_penggajian' => $tgl_penggajian) );
+            if($delete_absensi){
+                $res = array('status' => 200);
+                echo json_encode($res);
+            }else{
+                $res = array('status' => 400);
+                echo json_encode($res);
+            }
+        }
+           
+        
     }
 
     function generateCodeMatic()
